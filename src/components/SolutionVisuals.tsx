@@ -4,9 +4,9 @@ import type { Practice } from "@/lib/site";
 type Href = Practice["href"];
 
 const chapters = [
-  { index: "04", title: "Forces" },
+  { index: "04", title: "Forces", current: false },
   { index: "05", title: "Light", current: true },
-  { index: "06", title: "Life" },
+  { index: "06", title: "Life", current: false },
 ] as const;
 
 const rooms = [
