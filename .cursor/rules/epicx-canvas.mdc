@@ -1,0 +1,32 @@
+---
+description: React Three Fiber rules for Epicxstudios AR/VR showcases
+alwaysApply: true
+---
+
+# 3D & WebGL Canvas
+
+Keep heavy 3D in `components/canvas/`. Load every React Three Fiber `<Canvas>` with `next/dynamic` and `ssr: false`.
+
+```tsx
+const ShowcaseCanvas = dynamic(
+  () => import("@/components/canvas/ShowcaseCanvas"),
+  { ssr: false, loading: () => <ShowcaseLoader /> }
+);
+```
+
+Gate heavy assets with a custom `<Html>` loader from `@react-three/drei`. Keep it quiet and precise: thin type, tracked labels, progress only.
+
+```tsx
+function AssetLoader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <p className="text-xs tracking-[0.3em] text-white/70">
+        {Math.round(progress)}%
+      </p>
+    </Html>
+  );
+}
+```
+
+Do not mount `<Canvas>` directly in a Server Component or outside `components/canvas/`.

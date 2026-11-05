@@ -1,0 +1,112 @@
+# Epicxstudios — creative technology guardrails
+
+You are building the studio site for Epicxstudios: a K12 curriculum platform for state and CBSE syllabi, a training LMS for higher education and clinical programs, custom applications for training, and websites for education. The standard is a dark, precise, cinematic studio surface. Ship work that could sit in a design portfolio. Refuse generic SaaS layouts.
+
+## Stack
+
+- TypeScript only. Strict mode. No `any` unless a third-party type is genuinely unreachable, and then isolate it with a one-line comment.
+- Next.js App Router under `src/app`. Server Components by default. Add `'use client'` only for motion, WebGL, or browser state.
+- Tailwind CSS v4. Tokens live in `src/app/globals.css` inside `@theme`. Do not invent one-off hex values in components.
+- Framer Motion (`framer-motion`) for cinematic transitions and micro-interactions. Import it from `"framer-motion"`.
+- React Three Fiber for 3D. Canvas code lives in `src/components/canvas` and is loaded with `next/dynamic` and `ssr: false` from a client entry. Never import `three` into a Server Component.
+- Springs live in `src/lib/motion.ts`. Use `uiSpring` for controls and `revealSpring` for entrances. Do not invent a new cubic-bezier for UI unless the moment is genuinely cinematic and documented.
+
+## File placement
+
+- `src/app/layout.tsx` — fonts, dark shell, skip link, navbar, footer.
+- `src/app/page.tsx` — studio homepage. Keep it thin.
+- `src/app/services/<track>/page.tsx` — one route per practice: `k12-education`, `training-lms`, `software-mobile`, `web-dev`.
+- `src/components/Navbar.tsx` — the only primary navigation.
+- `src/components/ui` — atomic controls (`Button`, `Panel`, `Reveal`). No barrel `index.ts` files.
+- `src/components/canvas` — WebGL only.
+- `src/lib/site.ts` — practice copy and routes. Change labels here so nav, footer, and pages stay in lockstep.
+
+## Dark mode (required)
+
+The site is dark-only. Do not add a theme toggle or a light theme.
+
+| Token   | Hex       | Use                                      |
+| ------- | --------- | ---------------------------------------- |
+| ink     | `#07080d` | Page background                          |
+| surface | `#12151c` | Panels                                   |
+| ivory   | `#f4f0e6` | Primary text                             |
+| muted   | `#a39c90` | Short secondary text                     |
+| amber   | `#e7a23a` | Signal only: indexes, active marks, focus |
+| ion     | `#8ee0cf` | Hairlines and instrument lines           |
+
+- `<html>` sets `color-scheme: dark`. Body background is ink, body text is ivory.
+- Amber is for labels, indexes, and focus. Never for paragraphs.
+- Longer copy uses `text-ivory/75` or ivory, so it stays readable.
+- Depth comes from a 1px `border-ivory/10`, backdrop blur, and a single warm radial glow. No heavy drop shadows. No purple, blue, or magenta gradients.
+- Glass is reserved for the floating nav and sparse panels. Do not frost every section.
+
+## Typography
+
+- Display: Syne via `--font-display` (`font-display`). Tight tracking on large headlines (`tracking-tight` or about `-0.04em`).
+- UI: Geist Sans (`font-sans`).
+- Indexes and eyebrows: Geist Mono, uppercase, tracking about `0.28em`, size about 12px.
+- Headlines are sentences with a point of view. Do not center every section. Left-align the editorial column; center only the floating nav cluster.
+- One `h1` per page. Do not use divs as headings.
+
+## Motion
+
+- Every interactive control has a hover and a press state. Prefer `whileHover` / `whileTap` with scale between `0.98` and `1.03`, or a 1–2px translate on an arrow.
+- The active nav item uses `layoutId` so the pill springs between links. Only one node with that id may be mounted.
+- Entrances: `y: 18 → 0`, delayed in steps of `0.05–0.08s`, using `revealSpring`. Keep headline opacity at 1 so the first paint stays readable. Opacity fades are for menus and non-critical overlays. Run entrances once.
+- Animate `transform` and `opacity`. Do not animate width, height, or top of large trees. Height animation is allowed only for the small mobile nav panel.
+- Wrap the app in `MotionConfig` with `reducedMotion="user"`. Also honor `motion-reduce:` Tailwind variants for CSS transitions.
+- Critical text must not depend on JavaScript to become visible. Reveal nodes carry `data-reveal`. Do not leave opacity at 0 when scripting is disabled.
+- Page transitions stay quiet. Do not add full-screen wipes, parallax on body copy, or scroll-jacking.
+
+## Layout
+
+- Content column max width: `max-w-6xl`. Page padding: `px-5 md:px-8`.
+- The nav is a floating pill, fixed, inset from the viewport, blurred ink at about 80% opacity. It is not a full-bleed admin bar.
+- Mobile first. Below `md`, navigation collapses into a spring-opened panel. Hit targets are at least 44px. No horizontal page scroll.
+- First viewport of the homepage is a full-bleed atmospheric scene with the headline in the lower third, sitting on a solid ink scrim. WebGL never sits on top of text.
+- Repeating practice entries are editorial rows (index, title, summary, arrow), not a grid of equal icon cards.
+- Sections need real vertical rhythm (`py-20` to `py-28`). Do not stack boxed cards with identical padding as a substitute for layout.
+
+## 3D
+
+- Decorative, pointer-reactive, and cheap. Cap particle counts near 80. Set `dpr={[1, 1.5]}`.
+- `pointer-events` must leave links and buttons clickable. The canvas may receive the pointer only in empty space.
+- No postprocessing, no heavy models, no continuous allocations inside `useFrame`.
+- Dispose geometries created outside JSX. Pause or freeze the loop when the user prefers reduced motion.
+- Mark decorative canvas wrappers `aria-hidden`.
+
+## Accessibility and code
+
+- Semantic regions: `header`, `nav`, `main`, `section`, `footer`. `main` has `id="content"` and the skip link targets it.
+- Icon buttons need an accessible name. Menu buttons expose `aria-expanded` and `aria-controls`. Current links expose `aria-current="page"`.
+- Visible focus: amber outline, 2px, offset. Do not remove outlines.
+- Keyboard: Escape closes the mobile menu and returns focus to the menu button. Body scroll locks only while that menu is open.
+- Internal navigation uses `next/link`. Do not use `<a>` for in-app routes.
+- Props into client components must be serializable.
+- Keep page files as composition plus `metadata`. Shared practice copy belongs in `src/lib/site.ts`.
+- Do not add dependencies for a single widget. Prefer a small local component.
+- No barrel re-exports. Import the module that defines the symbol.
+
+## Voice and anti-patterns
+
+Voice: precise, warm, concrete. Name the classroom, the device, the constraint. Avoid hype words (cutting-edge, unlock, elevate, seamless, next-gen, revolutionary).
+
+Do not ship:
+
+- Inter, Arial, or system fonts as the display face
+- Purple-to-blue gradients, neon grids, or emoji used as icons
+- Three identical feature cards with a lucide icon, a title, and a vague sentence
+- A light mode, a hamburger that only toggles opacity, or a nav that is not usable at 320px
+- Lorem ipsum, fake metrics, fake client logos, or an invented contact email
+- `three` imported from a Server Component, or a canvas that blocks the headline
+
+## Before finishing a UI change
+
+Confirm all of the following:
+
+1. Dark tokens only, from the theme.
+2. Syne for display, mono for eyebrows, ivory text on ink.
+3. Hover and press springs on new controls, with reduced motion covered.
+4. The layout works at 320px and at desktop widths, with no overlap against the fixed nav.
+5. Keyboard focus is visible and the new control has an accessible name.
+6. WebGL, if added, is dynamic, decorative, and does not cover type.

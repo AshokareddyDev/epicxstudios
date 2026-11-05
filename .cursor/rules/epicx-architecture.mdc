@@ -1,0 +1,28 @@
+---
+description: App Router structure and TypeScript standards for Epicxstudios
+alwaysApply: true
+---
+
+# Architecture
+
+Stack: Next.js 14+ App Router, TypeScript, Tailwind CSS, Framer Motion, React Three Fiber.
+
+- Strict TypeScript. No `any`. Type props, variants, params, and loader props explicitly.
+- Semantic HTML5 (`header`, `main`, `section`, `nav`, `article`, `footer`) inside motion wrappers.
+- One route segment per service under `app/services/`, or a typed dynamic route `app/services/[slug]/page.tsx` fed by a typed catalog. Do not render every service from a single page component.
+
+```tsx
+type ServicePageProps = {
+  params: { slug: string };
+};
+
+export default function ServicePage({ params }: ServicePageProps) {
+  return (
+    <main>
+      <motion.article transition={{ type: "spring", stiffness: 100, damping: 15 }}>
+        {params.slug}
+      </motion.article>
+    </main>
+  );
+}
+```

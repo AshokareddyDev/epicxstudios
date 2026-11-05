@@ -1,0 +1,31 @@
+---
+description: Framer Motion interaction standards for Epicxstudios UI
+alwaysApply: true
+---
+
+# Animation & Interaction
+
+Warm daylight pages, with a dark stage reserved for the home glass panel and AR/VR scenes. Motion is part of the interface: cinematic transitions and fluid micro-interactions. Never swap pages or hover states instantly.
+
+## Structural motion
+
+Use spring physics for layout, panels, and page transitions. Do not use linear easing for structural UI.
+
+```tsx
+const spring = { type: "spring", stiffness: 100, damping: 15 } as const;
+
+<motion.main
+  initial={{ opacity: 0, y: 24 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={spring}
+>
+```
+
+## Pointer effects
+
+Drive parallax and custom cursor tracking with `useMotionValue` and `useTransform`. Do not store pointer position in React state on every move.
+
+```tsx
+const x = useMotionValue(0);
+const rotateY = useTransform(x, [-0.5, 0.5], [-8, 8]);
+```
