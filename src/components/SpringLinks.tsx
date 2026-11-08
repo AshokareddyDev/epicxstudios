@@ -65,7 +65,7 @@ export function SpringLinks({
             transition={uiSpring}
             className={rowClass[scale]}
           >
-            <span className="pt-1 font-mono text-[0.68rem] tracking-[0.18em] text-amber">
+            <span className="pt-1 font-mono text-[0.68rem] tracking-[0.18em] text-muted">
               {item.index}
             </span>
             <span className="block min-w-0">

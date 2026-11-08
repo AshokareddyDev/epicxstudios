@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { views } from "@/lib/site";
+import type { View } from "@/lib/site";
 import { uiSpring } from "@/lib/motion";
 
 const inset =
@@ -31,14 +31,14 @@ function StepButton({
       whileHover={disabled ? undefined : { y: -2 }}
       whileTap={disabled ? undefined : { scale: 0.98 }}
       transition={uiSpring}
-      className="grid size-11 place-items-center rounded-full border border-ink/15 bg-white/80 font-mono text-ink disabled:opacity-35"
+      className="grid size-11 place-items-center rounded-full border border-ink/15 bg-ivory font-mono text-paper disabled:opacity-35"
     >
       {children}
     </motion.button>
   );
 }
 
-export function ViewingRow() {
+export function ViewingRow({ views }: { views: readonly View[] }) {
   const scroller = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const [atStart, setAtStart] = useState(true);
@@ -76,7 +76,7 @@ export function ViewingRow() {
     <div>
       <div className="mx-auto flex w-full max-w-6xl items-end justify-between gap-6 px-5 md:px-8">
         <div className="min-w-0">
-          <p className="font-mono text-[0.72rem] tracking-[0.32em] text-amber uppercase">
+          <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
             Gallery
           </p>
           <h2
@@ -136,7 +136,7 @@ export function ViewingRow() {
                 />
               </div>
               <div className="mt-4 max-w-md pr-2">
-                <p className="font-mono text-[0.68rem] tracking-[0.22em] text-amber uppercase">
+                <p className="font-mono text-[0.68rem] tracking-[0.22em] text-muted uppercase">
                   {view.kicker}
                 </p>
                 <p className="mt-2 font-display text-2xl tracking-tight">{view.title}</p>

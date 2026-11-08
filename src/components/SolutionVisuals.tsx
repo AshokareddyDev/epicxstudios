@@ -95,7 +95,7 @@ function CurriculumDiagram() {
   return (
     <div className="grid lg:grid-cols-3">
       <div className="border-b border-ink/10 p-5 md:p-6 lg:border-r lg:border-b-0">
-        <p className="font-mono text-[0.68rem] tracking-[0.22em] text-amber uppercase">
+        <p className="font-mono text-[0.68rem] tracking-[0.22em] text-muted uppercase">
           01 · Syllabus
         </p>
         <p className="mt-3 font-display text-2xl tracking-tight">
@@ -106,10 +106,10 @@ function CurriculumDiagram() {
             <li
               key={chapter.index}
               className={`grid grid-cols-[2.25rem_1fr_auto] items-center gap-3 border-t border-ink/10 py-3 ${
-                chapter.current ? "text-ink" : "text-ink/45"
+                chapter.current ? "text-ink" : "text-ink/60"
               }`}
             >
-              <span className="font-mono text-[0.68rem] tracking-[0.14em] text-amber">
+              <span className={`font-mono text-[0.68rem] tracking-[0.14em] ${chapter.current ? "text-amber" : "text-muted"}`}>
                 {chapter.index}
               </span>
               <span className="font-display text-xl tracking-tight">{chapter.title}</span>
@@ -126,7 +126,7 @@ function CurriculumDiagram() {
       </div>
 
       <div className="border-b border-ink/10 p-5 md:p-6 lg:border-r lg:border-b-0">
-        <p className="font-mono text-[0.68rem] tracking-[0.22em] text-amber uppercase">
+        <p className="font-mono text-[0.68rem] tracking-[0.22em] text-muted uppercase">
           02 · In the school
         </p>
         <ol className="mt-5">
@@ -134,7 +134,7 @@ function CurriculumDiagram() {
             <li key={room.title} className="border-t border-ion/50 py-3">
               <div className="flex items-baseline justify-between gap-3">
                 <p className="font-display text-xl tracking-tight">{room.title}</p>
-                <span className="font-mono text-[0.62rem] tracking-[0.16em] text-amber">
+                <span className="font-mono text-[0.62rem] tracking-[0.16em] text-muted">
                   {room.index}
                 </span>
               </div>
@@ -145,7 +145,7 @@ function CurriculumDiagram() {
       </div>
 
       <div className="p-5 md:p-6">
-        <p className="font-mono text-[0.68rem] tracking-[0.22em] text-amber uppercase">
+        <p className="font-mono text-[0.68rem] tracking-[0.22em] text-muted uppercase">
           03 · Same chapter
         </p>
         <p className="mt-3 font-display text-2xl tracking-tight">Light, on every screen</p>
@@ -168,7 +168,7 @@ function CurriculumDiagram() {
 
 export function StudioMap() {
   return (
-    <figure className="mt-10 overflow-hidden rounded-[1.75rem] border border-ink/10 bg-surface">
+    <figure className="mt-10 overflow-hidden glass rounded-[1.75rem]">
       <CurriculumDiagram />
       <figcaption className="sr-only">
         An example CBSE chapter, Light, moves from the syllabus through a
@@ -182,7 +182,7 @@ export function StudioMap() {
             href={item.href}
             className="group border-t border-ink/10 px-5 py-5 transition-colors duration-300 first:border-t-0 hover:bg-paper motion-reduce:transition-none sm:border-t-0 sm:border-l sm:first:border-l-0"
           >
-            <span className="font-mono text-[0.68rem] tracking-[0.18em] text-amber">
+            <span className="font-mono text-[0.68rem] tracking-[0.18em] text-muted">
               {item.index}
             </span>
             <span className="mt-2 flex items-center justify-between gap-3">
@@ -191,7 +191,7 @@ export function StudioMap() {
               </span>
               <span
                 aria-hidden
-                className="font-mono text-ink/40 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
+                className="font-mono text-ink/60 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
               >
                 →
               </span>
@@ -206,7 +206,7 @@ export function StudioMap() {
 
 function K12Figure() {
   return (
-    <figure className="overflow-hidden rounded-[1.75rem] border border-ink/10 bg-surface">
+    <figure className="overflow-hidden glass rounded-[1.75rem]">
       <CurriculumDiagram />
       <figcaption className="border-t border-ink/10 px-5 py-4 text-sm leading-6 text-ink/70 md:px-6">
         An example. Chapter 05, Light, is the lesson in the room. It passes
@@ -219,9 +219,9 @@ function K12Figure() {
 
 function TrainingFigure() {
   return (
-    <figure className="overflow-hidden rounded-[1.75rem] border border-ink/10 bg-surface">
+    <figure className="overflow-hidden glass rounded-[1.75rem]">
       <div className="p-5 md:p-6">
-        <p className="font-mono text-[0.68rem] tracking-[0.22em] text-amber uppercase">
+        <p className="font-mono text-[0.68rem] tracking-[0.22em] text-muted uppercase">
           One path
         </p>
         <p className="mt-3 max-w-xl font-display text-2xl tracking-tight md:text-3xl">
@@ -235,13 +235,13 @@ function TrainingFigure() {
             </caption>
             <thead>
               <tr className="border-b border-ink/10">
-                <th className="w-[40%] px-3 py-3 font-mono text-[0.62rem] tracking-[0.16em] font-normal text-ink/45 uppercase">
+                <th className="w-[40%] px-3 py-3 font-mono text-[0.62rem] tracking-[0.16em] font-normal text-ink/60 uppercase">
                   Program
                 </th>
                 {trainingSteps.map((step, index) => (
                   <th
                     key={step}
-                    className="px-2 py-3 text-center font-mono text-[0.62rem] tracking-[0.14em] font-normal text-amber uppercase"
+                    className="px-2 py-3 text-center font-mono text-[0.62rem] tracking-[0.14em] font-normal text-muted uppercase"
                   >
                     0{index + 1}
                     <span className="mt-1 block tracking-[0.08em] text-ink/55 normal-case">
@@ -278,10 +278,10 @@ function TrainingFigure() {
 
 function SoftwareFigure() {
   return (
-    <figure className="overflow-hidden rounded-[1.75rem] border border-ink/10 bg-surface">
+    <figure className="overflow-hidden glass rounded-[1.75rem]">
       <div className="grid gap-3 p-5 md:grid-cols-3 md:grid-rows-2 md:p-6">
-        <div className="grid place-items-center rounded-[1.5rem] border border-white/10 bg-ink px-5 py-8 text-center text-ivory md:col-start-2 md:row-span-2 md:row-start-1">
-          <p className="font-mono text-[0.68rem] tracking-[0.22em] text-amber uppercase">
+        <div className="grid place-items-center rounded-[1.5rem] border border-white/10 bg-stage px-5 py-8 text-center text-ink md:col-start-2 md:row-span-2 md:row-start-1">
+          <p className="font-mono text-[0.68rem] tracking-[0.22em] text-muted uppercase">
             LMS
           </p>
           <p className="mt-3 font-display text-2xl tracking-tight">
@@ -301,7 +301,7 @@ function SoftwareFigure() {
                     : "md:col-start-3 md:row-start-2"
             }`}
           >
-            <p className="font-mono text-[0.62rem] tracking-[0.16em] text-amber">
+            <p className="font-mono text-[0.62rem] tracking-[0.16em] text-muted">
               0{index + 1}
             </p>
             <p className="mt-2 font-display text-xl tracking-tight">{app.title}</p>
@@ -319,20 +319,20 @@ function SoftwareFigure() {
 
 function WebFigure() {
   return (
-    <figure className="overflow-hidden rounded-[1.75rem] border border-ink/10 bg-surface">
+    <figure className="overflow-hidden glass rounded-[1.75rem]">
       <div className="p-3 md:p-4">
         <div className="overflow-hidden rounded-2xl border border-ink/15 bg-paper">
           <div className="flex items-center gap-2 border-b border-ink/10 px-4 py-3">
             <span className="size-2 rounded-full bg-ink/20" />
             <span className="size-2 rounded-full bg-ink/20" />
             <span className="size-2 rounded-full bg-amber" />
-            <span className="ml-2 font-mono text-[0.62rem] tracking-[0.16em] text-ink/45 uppercase">
+            <span className="ml-2 font-mono text-[0.62rem] tracking-[0.16em] text-ink/60 uppercase">
               The program
             </span>
           </div>
           <div className="grid gap-6 p-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] md:p-6">
             <div>
-              <p className="font-mono text-[0.68rem] tracking-[0.18em] text-amber">
+              <p className="font-mono text-[0.68rem] tracking-[0.18em] text-muted">
                 01
               </p>
               <p className="mt-2 font-display text-3xl tracking-tight">The syllabus</p>
@@ -342,24 +342,24 @@ function WebFigure() {
                     key={chapter.index}
                     className="grid grid-cols-[2rem_1fr] items-center gap-3 border-t border-ink/10 py-2"
                   >
-                    <span className="font-mono text-[0.68rem] text-amber">{chapter.index}</span>
+                    <span className="font-mono text-[0.68rem] text-muted">{chapter.index}</span>
                     <span className="h-2 rounded-full bg-ink/10" />
                   </li>
                 ))}
               </ul>
             </div>
             <div className="md:border-l md:border-ink/10 md:pl-6">
-              <p className="font-mono text-[0.68rem] tracking-[0.18em] text-amber">
+              <p className="font-mono text-[0.68rem] tracking-[0.18em] text-muted">
                 02
               </p>
               <p className="mt-2 font-display text-2xl tracking-tight">Faculty</p>
               <p className="mt-2 text-sm leading-6 text-ink/70">
                 Who teaches, and which program they hold.
               </p>
-              <p className="mt-6 font-mono text-[0.68rem] tracking-[0.18em] text-amber">
+              <p className="mt-6 font-mono text-[0.68rem] tracking-[0.18em] text-muted">
                 03
               </p>
-              <p className="mt-3 inline-flex h-11 items-center rounded-full bg-ink px-5 font-mono text-[0.68rem] tracking-[0.16em] text-ivory uppercase">
+              <p className="mt-3 inline-flex h-11 items-center rounded-full bg-stage px-5 font-mono text-[0.68rem] tracking-[0.16em] text-ink uppercase">
                 Start
               </p>
             </div>
@@ -396,15 +396,15 @@ function K12Scene() {
   return (
     <>
       <div className="flex items-end justify-between gap-3">
-        <p className="font-mono text-[0.58rem] tracking-[0.16em] text-amber uppercase md:text-[0.68rem]">
+        <p className="font-mono text-[0.58rem] tracking-[0.16em] text-muted uppercase md:text-[0.68rem]">
           State · CBSE
         </p>
         <p className="font-display text-sm tracking-tight md:text-2xl">Ch 05 · Light</p>
       </div>
       <div className="grid grid-cols-3 gap-1.5 md:gap-3">
         {rooms.map((room) => (
-          <div key={room.title} className="rounded-xl border border-ink/10 bg-white/80 px-2 py-2 md:px-3 md:py-3">
-            <p className="font-mono text-[0.55rem] tracking-[0.14em] text-amber">{room.index}</p>
+          <div key={room.title} className="rounded-xl border border-ink/10 bg-surface px-2 py-2 md:px-3 md:py-3">
+            <p className="font-mono text-[0.55rem] tracking-[0.14em] text-muted">{room.index}</p>
             <p className="mt-1 truncate font-display text-xs tracking-tight md:text-lg">{room.title}</p>
           </div>
         ))}
@@ -423,13 +423,13 @@ function K12Scene() {
 function TrainingScene() {
   return (
     <>
-      <p className="font-mono text-[0.58rem] tracking-[0.16em] text-amber uppercase md:text-[0.68rem]">
+      <p className="font-mono text-[0.58rem] tracking-[0.16em] text-muted uppercase md:text-[0.68rem]">
         One path
       </p>
       <ul className="grid flex-1 grid-cols-2 content-center gap-1.5 md:grid-cols-4 md:gap-3">
         {trainingRows.map((row, index) => (
-          <li key={row} className="rounded-xl border border-ink/10 bg-white/80 px-2 py-2 md:px-3 md:py-3">
-            <p className="font-mono text-[0.55rem] text-amber">0{index + 1}</p>
+          <li key={row} className="rounded-xl border border-ink/10 bg-surface px-2 py-2 md:px-3 md:py-3">
+            <p className="font-mono text-[0.55rem] text-muted">0{index + 1}</p>
             <p className="mt-1 truncate font-display text-xs tracking-tight md:text-lg">{row}</p>
           </li>
         ))}
@@ -451,18 +451,18 @@ function TrainingScene() {
 function SoftwareScene() {
   return (
     <>
-      <p className="font-mono text-[0.58rem] tracking-[0.16em] text-amber uppercase md:text-[0.68rem]">
+      <p className="font-mono text-[0.58rem] tracking-[0.16em] text-muted uppercase md:text-[0.68rem]">
         Around the course
       </p>
       <div className="grid flex-1 grid-cols-2 content-center gap-1.5 md:grid-cols-4 md:gap-3">
         {apps.map((app) => (
-          <div key={app.title} className="rounded-xl border border-ink/10 bg-white/80 px-2 py-2 md:py-4">
+          <div key={app.title} className="rounded-xl border border-ink/10 bg-surface px-2 py-2 md:py-4">
             <p className="truncate text-center font-display text-xs tracking-tight md:text-base">
               {app.title}
             </p>
           </div>
         ))}
-        <div className="col-span-2 grid place-items-center rounded-xl bg-ink px-3 py-2 text-ivory md:col-span-4 md:py-4">
+        <div className="col-span-2 grid place-items-center rounded-xl bg-stage px-3 py-2 text-ink md:col-span-4 md:py-4">
           <p className="font-display text-sm tracking-tight md:text-xl">LMS · course, cohort, record</p>
         </div>
       </div>
@@ -477,7 +477,7 @@ function WebScene() {
         <span className="size-1.5 rounded-full bg-ink/20" />
         <span className="size-1.5 rounded-full bg-ink/20" />
         <span className="size-1.5 rounded-full bg-amber" />
-        <span className="ml-2 font-mono text-[0.55rem] tracking-[0.14em] text-ink/45 uppercase">
+        <span className="ml-2 font-mono text-[0.55rem] tracking-[0.14em] text-ink/60 uppercase">
           The program
         </span>
       </div>
@@ -489,7 +489,7 @@ function WebScene() {
         </div>
         <div className="flex flex-col items-start justify-between">
           <p className="font-display text-sm tracking-tight md:text-xl">Faculty</p>
-          <span className="inline-flex h-7 items-center rounded-full bg-ink px-3 font-mono text-[0.55rem] tracking-[0.14em] text-ivory uppercase">
+          <span className="inline-flex h-7 items-center rounded-full bg-stage px-3 font-mono text-[0.55rem] tracking-[0.14em] text-ink uppercase">
             Start
           </span>
         </div>

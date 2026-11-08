@@ -63,7 +63,7 @@ export function EmphasisRows({
                 onFocus={() => setActive(index)}
               />
               <div className="pointer-events-none relative grid gap-3 px-4 py-7 md:grid-cols-[4rem_minmax(0,0.8fr)_minmax(0,1.1fr)] md:gap-8 md:px-6 md:py-9">
-                <span className="font-mono text-[0.68rem] tracking-[0.18em] text-amber">
+                <span className="font-mono text-[0.68rem] tracking-[0.18em] text-muted">
                   {row.index}
                 </span>
                 <Heading

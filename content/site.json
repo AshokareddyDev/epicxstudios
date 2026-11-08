@@ -1,0 +1,335 @@
+{
+  "studio": {
+    "name": "Epicxstudios",
+    "description": "Epicxstudios builds a K12 curriculum platform for state and CBSE syllabi, a training LMS for higher study, and the applications and sites around them.",
+    "footer": "K12 curriculum platforms, training systems for higher study, and the applications and sites around them."
+  },
+  "home": {
+    "eyebrow": "Core products",
+    "title": "Platforms for the syllabus, and the training that follows.",
+    "lede": "Epicxstudios builds a K12 platform for state and CBSE curricula, a training LMS for higher study and clinical programs, and the applications and sites those programs run on.",
+    "systemEyebrow": "The system",
+    "systemTitle": "From the board, through the classroom, onto the screen.",
+    "linksTitle": "Services, the studio, and a way to start."
+  },
+  "servicesPage": {
+    "title": "Services",
+    "description": "Four Epicxstudios products: a K12 curriculum platform, a training LMS, custom applications, and education websites.",
+    "eyebrow": "Services",
+    "headline": "The platform first. Then the program around it.",
+    "lede": "K12 content for state and CBSE syllabi is the center. Training for higher study, engineering, nursing, and medicine sits with it. Custom applications and websites carry those platforms into a classroom and onto a public page."
+  },
+  "about": {
+    "title": "About",
+    "description": "Epicxstudios builds curriculum platforms for state and CBSE classrooms, and training systems for higher study.",
+    "eyebrow": "About",
+    "headline": "A studio for the syllabus, and the systems that carry it.",
+    "lede": "Epicxstudios builds the K12 platform first: state and CBSE content, classrooms, and a place for teachers to add their own work. The same studio builds training systems for higher education, engineering, nursing, and medical programs, then the applications and websites those programs need.",
+    "principles": [
+      {
+        "index": "01",
+        "title": "The syllabus is the spec.",
+        "body": "State boards and CBSE set the path. The platform follows the chapter, the period, and the exam the class is preparing for."
+      },
+      {
+        "index": "02",
+        "title": "Teachers keep the room.",
+        "body": "A studio for their own material, a library where they create it, and classrooms they open themselves. The course can grow after it is installed."
+      },
+      {
+        "index": "03",
+        "title": "One course, several screens.",
+        "body": "A phone, a PC, a tablet, and an AR/VR device open the same lesson. The room chooses the screen. The chapter stays put."
+      },
+      {
+        "index": "04",
+        "title": "Training past the school.",
+        "body": "Higher education, engineering, nursing, and medical programs use the same discipline: a cohort, a curriculum, and a record of what was practiced."
+      }
+    ],
+    "teamEyebrow": "Team",
+    "teamTitle": "Eight seats around the syllabus.",
+    "teamLede": "The names stay off this page. Each seat is a part of the work: the syllabus, the classroom, the training programs, and the applications and sites around them.",
+    "members": [
+      {
+        "index": "01",
+        "name": "Seat 01",
+        "role": "Direction",
+        "place": "Bengaluru. The studio brief.",
+        "mark": "01"
+      },
+      {
+        "index": "02",
+        "name": "Seat 02",
+        "role": "Curriculum",
+        "place": "State boards and CBSE.",
+        "mark": "02"
+      },
+      {
+        "index": "03",
+        "name": "Seat 03",
+        "role": "Classroom",
+        "place": "Studio, library, and roster.",
+        "mark": "03"
+      },
+      {
+        "index": "04",
+        "name": "Seat 04",
+        "role": "Training",
+        "place": "Higher study and cohorts.",
+        "mark": "04"
+      },
+      {
+        "index": "05",
+        "name": "Seat 05",
+        "role": "Engineering",
+        "place": "Practice the lab repeats.",
+        "mark": "05"
+      },
+      {
+        "index": "06",
+        "name": "Seat 06",
+        "role": "Clinical",
+        "place": "Nursing and medicine.",
+        "mark": "06"
+      },
+      {
+        "index": "07",
+        "name": "Seat 07",
+        "role": "Applications",
+        "place": "Phone, PC, tablet, AR/VR.",
+        "mark": "07"
+      },
+      {
+        "index": "08",
+        "name": "Seat 08",
+        "role": "Sites",
+        "place": "Schools and institutes.",
+        "mark": "08"
+      }
+    ],
+    "productsEyebrow": "Products",
+    "productsTitle": "Four products, one classroom at the start."
+  },
+  "contactPage": {
+    "title": "Contact",
+    "description": "Start a project with Epicxstudios. Name the syllabus, the device, and who teaches.",
+    "eyebrow": "Contact",
+    "headline": "Tell us the syllabus, the cohort, and the device.",
+    "lede": "A short brief is enough. Which board or program, who teaches, and where the lesson has to run."
+  },
+  "pages": [
+    {
+      "href": "/",
+      "index": "00",
+      "label": "Home",
+      "summary": "The curriculum platform, the training LMS, and the software around them."
+    },
+    {
+      "href": "/learn",
+      "index": "01",
+      "label": "Learn",
+      "summary": "A chapter opened as a short lesson: a read, a diagram, and a check."
+    },
+    {
+      "href": "/services",
+      "index": "02",
+      "label": "Services",
+      "summary": "K12 for state and CBSE syllabi, training for higher study, then applications and sites."
+    },
+    {
+      "href": "/about",
+      "index": "03",
+      "label": "About",
+      "summary": "How the studio works when the syllabus and the classroom set the brief."
+    },
+    {
+      "href": "/contact",
+      "index": "04",
+      "label": "Contact",
+      "summary": "A short brief: the board or program, the device, and who teaches."
+    }
+  ],
+  "practices": [
+    {
+      "href": "/services/k12-education",
+      "index": "01",
+      "nav": "K–12",
+      "title": "K12 curriculum",
+      "headline": "The syllabus, on a platform teachers can extend.",
+      "summary": "A curriculum LMS for state syllabi and CBSE, with a studio, a library, and classrooms teachers open themselves.",
+      "lede": "The main product is a learning platform for K12. Lessons follow state syllabi and CBSE, and the same course opens on a phone, a PC, a tablet, or an AR/VR device. Teachers extend it themselves: a studio for material they add, a library where they create it, and classrooms they open for their own students.",
+      "points": [
+        "Syllabus-aligned lessons for state boards and CBSE, so a chapter can be the period a class runs today.",
+        "One course on mobile, PC, tablets, and AR/VR devices. The room picks the screen. The chapter stays the same.",
+        "A studio for material teachers add, a library where they create it, and classrooms they set up themselves."
+      ],
+      "detailTitle": "What a school holds.",
+      "details": [
+        {
+          "index": "01",
+          "title": "Studio",
+          "body": "Teachers add their own lessons, files, and checks. The course can grow after it is installed, without waiting on a new release from the studio."
+        },
+        {
+          "index": "02",
+          "title": "Library",
+          "body": "A place to create content and keep it. A department can draft a lesson once and reuse it across sections that share the same syllabus."
+        },
+        {
+          "index": "03",
+          "title": "Classrooms",
+          "body": "A teacher opens a class, assigns the syllabus path, and works with the students in that room. The roster and the lesson stay together."
+        },
+        {
+          "index": "04",
+          "title": "Devices",
+          "body": "Phones, computers, tablets, and AR/VR headsets open the same course. The room picks the screen. The chapter stays the same."
+        }
+      ]
+    },
+    {
+      "href": "/services/training-lms",
+      "index": "02",
+      "nav": "Training",
+      "title": "Training LMS",
+      "headline": "A training platform for the programs after school.",
+      "summary": "An LMS for higher education, engineering, nursing, and medical training, and for other domains that teach by practice.",
+      "lede": "The second product is a training LMS. It is built for higher education and for domains that teach by doing: engineering, nursing, and medical education, and other programs that need a cohort, a curriculum, and a record. The course, the group, and the assessment live in one place.",
+      "points": [
+        "Programs for colleges and institutes, structured as terms, modules, and the assessments those programs already use.",
+        "Engineering, nursing, and medical training, where a lab, a ward, or a procedure is part of the lesson.",
+        "The same LMS shape for other training domains. A new field starts from a cohort and a curriculum already in place."
+      ],
+      "detailTitle": "Where the training runs.",
+      "details": [
+        {
+          "index": "01",
+          "title": "Higher education",
+          "body": "Courses and cohorts for colleges and institutes. Faculty can see the term, the module, and who has finished the work."
+        },
+        {
+          "index": "02",
+          "title": "Engineering",
+          "body": "Labs, drawings, and problem sets stay attached to the module they belong to. Practice lives in the course."
+        },
+        {
+          "index": "03",
+          "title": "Nursing and medicine",
+          "body": "Training sequences a learner can repeat, with a record of what was practiced and finished. The platform carries the program the institute already teaches."
+        },
+        {
+          "index": "04",
+          "title": "Other domains",
+          "body": "Any training field that needs a curriculum, a cohort, and a record can use the same shape. The syllabus changes. The platform holds."
+        }
+      ]
+    },
+    {
+      "href": "/services/software-mobile",
+      "index": "03",
+      "nav": "Software",
+      "title": "Custom applications",
+      "headline": "Applications for the work around the course.",
+      "summary": "Custom software and mobile products for schools, institutes, and the teams that run a training platform.",
+      "lede": "When the LMS is not the whole job, the studio builds the applications around it. A student app, a faculty tool, enrollment, content operations, support. The software is for training and education, and it is held to the same standard as the course.",
+      "points": [
+        "Mobile and desktop applications for the people who teach, learn, and run the program.",
+        "Tools for enrollment, content operations, and support, sitting with the LMS.",
+        "Shaped for school and institute networks: shared devices, interrupted connections, and a release a team can stage."
+      ],
+      "detailTitle": "The software beside the LMS.",
+      "details": [
+        {
+          "index": "01",
+          "title": "Student and teacher apps",
+          "body": "Applications for phones, tablets, and computers. The person in the lesson and the person running it each get a tool that matches the work."
+        },
+        {
+          "index": "02",
+          "title": "Operations",
+          "body": "Enrollment, content operations, and support tools for the team behind the program. They share the same records as the course."
+        },
+        {
+          "index": "03",
+          "title": "The network in the building",
+          "body": "Shared devices, connections that drop, and releases a small team can stage. The application has to keep working on the day the lab is full."
+        }
+      ]
+    },
+    {
+      "href": "/services/web-dev",
+      "index": "04",
+      "nav": "Web",
+      "title": "Education websites",
+      "headline": "Sites that can explain the program.",
+      "summary": "Websites for training platforms, schools, and institutes in education.",
+      "lede": "The public site is how a school, an institute, or a training platform explains the program. It names the syllabus, the people who teach, and how someone starts. It stays fast when the content is real.",
+      "points": [
+        "Sites for training platforms: the product, the program, and a clear way to begin.",
+        "Sites for schools and education groups, written around the syllabus and the faculty.",
+        "Exact type, a readable structure, and motion kept off the path a visitor is reading."
+      ],
+      "detailTitle": "Pages with a program behind them.",
+      "details": [
+        {
+          "index": "01",
+          "title": "Training platforms",
+          "body": "A public site for the product itself. Who it is for, how a course runs, and where a school or an institute starts."
+        },
+        {
+          "index": "02",
+          "title": "Schools and institutes",
+          "body": "Pages a family, a student, or a partner can read: the syllabus, the faculty, and the program, in that order."
+        },
+        {
+          "index": "03",
+          "title": "The reading path",
+          "body": "Type and structure come first. Motion stays off the sentences. The site has to hold when the syllabus and the cohort are both on the page."
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "src": "/gallery/tablet-lesson.jpg",
+      "href": "/services/k12-education",
+      "kicker": "Education",
+      "title": "On a tablet.",
+      "caption": "The chapter and the diagram, read at a desk.",
+      "alt": "A tablet on a wooden desk showing a lesson about white light passing through a prism."
+    },
+    {
+      "src": "/gallery/laptop-chapter.jpg",
+      "href": "/services/k12-education",
+      "kicker": "Education",
+      "title": "On a laptop.",
+      "caption": "The same syllabus, open in the classroom.",
+      "alt": "A laptop in an empty classroom showing a chapter about the plant cell."
+    },
+    {
+      "src": "/gallery/phone-practice.jpg",
+      "href": "/services/k12-education",
+      "kicker": "Education",
+      "title": "On a phone.",
+      "caption": "A short practice card beside the notebook.",
+      "alt": "A phone on a desk showing a practice card about a convex lens."
+    },
+    {
+      "src": "/gallery/ar-desk.jpg",
+      "href": "/services/k12-education",
+      "kicker": "AR",
+      "title": "Above the page.",
+      "caption": "The diagram lifts off the textbook.",
+      "alt": "An open textbook with a three-dimensional plant cell floating above the page and a tablet behind it."
+    },
+    {
+      "src": "/gallery/vr-headset.jpg",
+      "href": "/services/training-lms",
+      "kicker": "VR",
+      "title": "In the room.",
+      "caption": "The model is large enough to walk around.",
+      "alt": "An adult seen from behind, wearing a headset, looking at a large model of a heart."
+    }
+  ]
+}

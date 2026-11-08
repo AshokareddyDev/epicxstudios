@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/Button";
 import { uiSpring } from "@/lib/motion";
-import { pages } from "@/lib/site";
+import type { PageLink } from "@/lib/site";
 
 const DESKTOP_QUERY = "(min-width: 768px)";
 
@@ -38,7 +38,7 @@ function Mark() {
         stroke="currentColor"
         strokeWidth="1.4"
       />
-      <path d="M12 7.25v9.5" stroke="#d08a1a" strokeWidth="1.4" />
+      <path d="M12 7.25v9.5" stroke="#00ffd5" strokeWidth="1.4" />
     </svg>
   );
 }
@@ -60,7 +60,13 @@ function MenuGlyph({ open }: { open: boolean }) {
   );
 }
 
-export function Navbar() {
+export function Navbar({
+  pages,
+  name,
+}: {
+  pages: readonly PageLink[];
+  name: string;
+}) {
   const pathname = usePathname();
   const desktop = useSyncExternalStore(
     subscribeDesktop,
@@ -121,7 +127,7 @@ export function Navbar() {
           <div className="flex items-center justify-between gap-3 px-2 py-2 md:px-3">
             <Link
               href="/"
-              aria-label="Epicxstudios home"
+              aria-label={`${name} home`}
               className="flex items-center gap-2.5 rounded-full py-1 pr-3 pl-1.5"
             >
               <motion.span
@@ -133,7 +139,7 @@ export function Navbar() {
                 <Mark />
               </motion.span>
               <span className="font-display text-sm font-semibold tracking-[0.12em]">
-                Epicxstudios
+                {name}
               </span>
             </Link>
 

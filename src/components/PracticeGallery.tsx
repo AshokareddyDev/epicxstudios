@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { SolutionScene } from "@/components/SolutionVisuals";
-import { practices, type Practice } from "@/lib/site";
+import type { Practice } from "@/lib/site";
 import { slideSpring, useSlideRow } from "@/components/useSlideRow";
 
 const MotionLink = motion.create(Link);
@@ -42,18 +42,14 @@ function SceneCard({
         whileHover={{ y: -4 }}
         whileTap={{ scale: 0.98 }}
         transition={slideSpring}
-        className={`block overflow-hidden rounded-[24px] border border-ink/10 bg-white/80 text-ink ${
-          featured
-            ? "shadow-[0_18px_40px_rgba(22,24,29,0.14)]"
-            : "shadow-[0_10px_24px_rgba(22,24,29,0.08)]"
-        }`}
+        className="glass block overflow-hidden rounded-[24px] text-ink"
       >
         <div className="relative aspect-video bg-paper">
           <SolutionScene href={practice.href} />
         </div>
         {raised ? (
           <div className="flex items-center justify-between gap-3 px-4 py-2.5 md:gap-4">
-            <p className="shrink-0 font-mono text-[0.68rem] tracking-[0.28em] text-amber uppercase">
+            <p className="shrink-0 font-mono text-[0.68rem] tracking-[0.28em] text-muted uppercase">
               {practice.index}
             </p>
             <h3 className="min-w-0 flex-1 truncate font-display text-base tracking-tight md:text-lg">
@@ -87,14 +83,14 @@ function Control({
       whileTap={{ scale: 0.98 }}
       transition={slideSpring}
       onClick={onClick}
-      className="grid size-11 place-items-center rounded-full border border-ink/15 bg-white/80 font-mono text-ink"
+      className="grid size-11 place-items-center rounded-full border border-ivory/40 bg-ivory font-mono text-paper"
     >
       {children}
     </motion.button>
   );
 }
 
-export function PracticeGallery() {
+export function PracticeGallery({ practices }: { practices: readonly Practice[] }) {
   const row = useSlideRow(practices.length, { align: "center", flank: true });
   const practice = practices[row.logical] ?? practices[0];
   const frames = row.lead
@@ -115,7 +111,7 @@ export function PracticeGallery() {
     >
       <div className="flex items-end justify-between gap-6">
         <div className="min-w-0">
-          <p className="font-mono text-[0.72rem] tracking-[0.32em] text-amber uppercase">
+          <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
             Gallery
           </p>
           <h2
@@ -155,7 +151,7 @@ export function PracticeGallery() {
           <Control label="Previous scene" onClick={row.retreat}>
             ←
           </Control>
-          <p className="font-mono text-[0.68rem] tracking-[0.18em] text-ink/45 uppercase">
+          <p className="font-mono text-[0.68rem] tracking-[0.18em] text-ink/60 uppercase">
             {row.reduce ? "Scroll" : row.held || !row.inView ? "Paused" : "Moving"}
           </p>
           <Control label="Next scene" onClick={row.advance}>

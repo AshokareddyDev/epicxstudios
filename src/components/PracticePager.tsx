@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { practices } from "@/lib/site";
+import type { Practice } from "@/lib/site";
 
 const STRUCTURAL_SPRING = {
   type: "spring" as const,
@@ -14,7 +14,7 @@ const MotionLink = motion.create(Link);
 
 type Tone = "paper" | "stage";
 
-function place(href: string) {
+function place(practices: readonly Practice[], href: string) {
   const index = practices.findIndex((practice) => practice.href === href);
   return {
     index,
@@ -28,10 +28,12 @@ function place(href: string) {
 }
 
 export function ChapterRail({
+  practices,
   tone = "paper",
   currentHref,
   onSelect,
 }: {
+  practices: readonly Practice[];
   tone?: Tone;
   currentHref?: string;
   onSelect?: (index: number) => void;
@@ -52,11 +54,11 @@ export function ChapterRail({
                 : "border-ink bg-ink text-paper"
               : stage
                 ? "border-white/15 text-ivory/75 hover:border-ivory/40"
-                : "border-ink/15 bg-white/70 text-ink/70 hover:border-amber"
+                : "border-ivory/15 bg-surface text-ink/70 hover:border-amber"
           }`;
           const label = (
             <>
-              <span className={current ? undefined : "text-amber"}>
+              <span className={current ? undefined : "text-muted"}>
                 {practice.index}
               </span>
               {practice.nav}
@@ -112,7 +114,7 @@ function Step({
   tone,
 }: {
   label: string;
-  practice: (typeof practices)[number];
+  practice: Practice;
   tone: Tone;
 }) {
   const stage = tone === "stage";
@@ -125,19 +127,19 @@ function Step({
       className={`group flex items-center justify-between gap-4 rounded-2xl border px-4 py-4 ${
         stage
           ? "border-white/10 bg-white/[0.04]"
-          : "border-ink/10 bg-white/70"
+          : "border-ivory/15 bg-surface"
       }`}
     >
       <span>
         <span
           className={`font-mono text-[0.68rem] tracking-[0.18em] uppercase ${
-            stage ? "text-ivory/45" : "text-ink/45"
+            stage ? "text-ivory/60" : "text-ink/60"
           }`}
         >
           {label}
         </span>
         <span className="mt-1 block font-display text-lg tracking-tight">
-          <span className="mr-2 font-mono text-sm text-amber">
+          <span className="mr-2 font-mono text-sm text-muted">
             {practice.index}
           </span>
           {practice.nav}
@@ -152,7 +154,7 @@ function Step({
       </span>
       <span
         aria-hidden
-        className="font-mono text-lg text-amber transition-transform group-hover:translate-x-1"
+        className="font-mono text-lg text-muted transition-transform group-hover:translate-x-1 group-hover:text-amber"
       >
         →
       </span>
@@ -162,12 +164,14 @@ function Step({
 
 export function PracticePager({
   href,
+  practices,
   tone = "paper",
 }: {
   href: string;
+  practices: readonly Practice[];
   tone?: Tone;
 }) {
-  const { previous, next } = place(href);
+  const { previous, next } = place(practices, href);
 
   return (
     <nav aria-label="Continue" className="mt-10 border-t border-current/10 pt-6">
@@ -195,16 +199,16 @@ export function PracticePager({
             href="/services"
             whileHover={{ y: -3 }}
             transition={STRUCTURAL_SPRING}
-            className={`flex items-center justify-between rounded-2xl border px-4 py-4 ${
+            className={`group flex items-center justify-between rounded-2xl border px-4 py-4 ${
               tone === "stage"
                 ? "border-white/10 bg-white/[0.04]"
-                : "border-ink/10 bg-white/70"
+                : "border-ivory/15 bg-surface"
             }`}
           >
             <span>
               <span
                 className={`font-mono text-[0.68rem] tracking-[0.18em] uppercase ${
-                  tone === "stage" ? "text-ivory/45" : "text-ink/45"
+                  tone === "stage" ? "text-ivory/60" : "text-ink/60"
                 }`}
               >
                 Continue
@@ -213,7 +217,7 @@ export function PracticePager({
                 All products
               </span>
             </span>
-            <span aria-hidden className="font-mono text-lg text-amber">
+            <span aria-hidden className="font-mono text-lg text-muted group-hover:text-amber">
               →
             </span>
           </MotionLink>

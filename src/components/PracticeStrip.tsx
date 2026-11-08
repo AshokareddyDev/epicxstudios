@@ -2,38 +2,27 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { practices, type Practice } from "@/lib/site";
+import type { Practice } from "@/lib/site";
 import { slideSpring, useSlideRow } from "@/components/useSlideRow";
 
 const GLASS = {
   "/services/k12-education": {
     title: "K12 curriculum platform",
     metric: "State and CBSE",
-    gradient:
-      "bg-gradient-to-br from-white/[0.12] via-white/[0.04] to-amber/[0.07]",
   },
   "/services/training-lms": {
     title: "Training LMS",
     metric: "Higher study",
-    gradient:
-      "bg-gradient-to-br from-ion/[0.12] via-white/[0.04] to-white/[0.02]",
   },
   "/services/software-mobile": {
     title: "Custom applications",
     metric: "Training software",
-    gradient:
-      "bg-gradient-to-br from-white/[0.10] via-white/[0.03] to-white/[0.015]",
   },
   "/services/web-dev": {
     title: "Education websites",
     metric: "Schools and institutes",
-    gradient:
-      "bg-gradient-to-br from-white/[0.08] via-amber/[0.05] to-white/[0.02]",
   },
-} as const satisfies Record<
-  Practice["href"],
-  { title: string; metric: string; gradient: string }
->;
+} as const satisfies Record<Practice["href"], { title: string; metric: string }>;
 
 function StageControl({
   label,
@@ -66,17 +55,20 @@ function PillarCard({
   practice: Practice;
   raised: boolean;
 }) {
-  const glass = GLASS[practice.href];
+  const glass =
+    practice.href in GLASS
+      ? GLASS[practice.href as keyof typeof GLASS]
+      : GLASS["/services/k12-education"];
 
   return (
     <motion.article
       whileHover={{ y: -4 }}
       transition={slideSpring}
-      className={`relative h-full overflow-hidden rounded-[24px] border border-white/[0.08] shadow-[0_18px_40px_rgba(0,0,0,0.28)] backdrop-blur-[24px] ${glass.gradient}`}
+      className="glass relative h-full overflow-hidden rounded-[24px]"
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent"
+        className={`pointer-events-none absolute inset-x-6 top-0 h-px ${raised ? "bg-amber" : "bg-white/30"}`}
       />
       <Link
         href={practice.href}
@@ -84,7 +76,7 @@ function PillarCard({
         className="block p-6 md:p-7"
       >
         <div className="flex items-center justify-between gap-4">
-          <span className="font-mono text-[0.68rem] tracking-[0.22em] text-amber">
+          <span className={`font-mono text-[0.68rem] tracking-[0.22em] ${raised ? "text-amber" : "text-muted"}`}>
             {practice.index}
           </span>
           <span className="text-right font-mono text-[0.68rem] tracking-[0.16em] text-ivory/55 uppercase">
@@ -100,7 +92,7 @@ function PillarCard({
   );
 }
 
-export function PracticeStrip() {
+export function PracticeStrip({ practices }: { practices: readonly Practice[] }) {
   const row = useSlideRow(practices.length);
   const practice = practices[row.logical] ?? practices[0];
   const frames = row.reduce ? practices : [...practices, practices[0]];
@@ -121,9 +113,9 @@ export function PracticeStrip() {
     >
       <div className="flex items-center justify-between gap-4">
         <p className="font-mono text-[0.68rem] tracking-[0.22em] whitespace-nowrap text-ivory/55">
-          {practice.index} / 04
+          {practice.index} / {String(practices.length).padStart(2, "0")}
         </p>
-        <p className="font-mono text-[0.68rem] tracking-[0.18em] text-ivory/45 uppercase">
+        <p className="font-mono text-[0.68rem] tracking-[0.18em] text-ivory/60 uppercase">
           {row.reduce ? "Scroll" : row.held || !row.inView ? "Paused" : "Moving"}
         </p>
       </div>

@@ -54,7 +54,7 @@ export function TiltPanel({
             ? { rotateX, rotateY, transformStyle: "preserve-3d" }
             : undefined
         }
-        className={`rounded-[28px] border border-ink/10 bg-surface px-6 py-8 shadow-[0_20px_60px_rgba(22,24,29,0.06)] md:px-10 md:py-12 ${className}`}
+        className={`glass rounded-[28px] px-6 py-8 md:px-10 md:py-12 ${className}`}
       >
         {children}
       </motion.div>

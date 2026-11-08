@@ -8,7 +8,7 @@ import { uiSpring } from "@/lib/motion";
 const MotionLink = motion.create(Link);
 
 const variants = {
-  solid: "bg-ink text-paper hover:bg-amber hover:text-ink",
+  solid: "bg-amber text-paper hover:bg-ivory hover:text-paper",
   ghost: "border border-ink/15 text-ink hover:border-amber",
 } as const;
 
