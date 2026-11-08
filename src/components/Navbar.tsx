@@ -38,7 +38,7 @@ function Mark() {
         stroke="currentColor"
         strokeWidth="1.4"
       />
-      <path d="M12 7.25v9.5" stroke="#e7a23a" strokeWidth="1.4" />
+      <path d="M12 7.25v9.5" stroke="#d08a1a" strokeWidth="1.4" />
     </svg>
   );
 }

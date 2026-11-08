@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 import {
   motion,
   useMotionTemplate,
@@ -11,6 +10,7 @@ import {
   type Variants,
 } from "framer-motion";
 import { PracticeStrip } from "@/components/PracticeStrip";
+import { SpringLinks } from "@/components/SpringLinks";
 import { StudioMap } from "@/components/SolutionVisuals";
 import { ViewingRow } from "@/components/ViewingRow";
 import { pages } from "@/lib/site";
@@ -225,7 +225,7 @@ export default function HomePage() {
   const rotateX = useTransform(smoothY, [-0.5, 0.5], [4, -4]);
   const glareX = useTransform(smoothX, [-0.5, 0.5], ["16%", "84%"]);
   const glareY = useTransform(smoothY, [-0.5, 0.5], ["0%", "58%"]);
-  const glare = useMotionTemplate`radial-gradient(540px circle at ${glareX} ${glareY}, rgba(244,240,230,0.16), transparent 58%)`;
+  const glare = useMotionTemplate`radial-gradient(540px circle at ${glareX} ${glareY}, rgba(248,243,230,0.16), transparent 58%)`;
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -348,36 +348,19 @@ export default function HomePage() {
           >
             Services, the studio, and a way to start.
           </h2>
-          <ul className="mt-10 border-b border-ink/10">
-            {pages
-              .filter((page) => page.href !== "/")
-              .map((page) => (
-                <li key={page.href}>
-                  <Link
-                    href={page.href}
-                    className="group grid grid-cols-[2.25rem_1fr_1.25rem] items-start gap-x-4 border-t border-ink/10 py-7 md:grid-cols-[3rem_1fr_1.5rem] md:py-8"
-                  >
-                    <span className="pt-1 font-mono text-[0.68rem] tracking-[0.18em] text-amber">
-                      {page.index}
-                    </span>
-                    <span>
-                      <span className="block font-display text-2xl tracking-tight text-ink transition-colors duration-300 group-hover:text-amber motion-reduce:transition-none md:text-3xl">
-                        {page.label}
-                      </span>
-                      <span className="mt-2 block max-w-xl text-sm leading-6 text-ink/70 md:text-base">
-                        {page.summary}
-                      </span>
-                    </span>
-                    <span
-                      aria-hidden
-                      className="pt-1 font-mono text-ink/50 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
-                    >
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-          </ul>
+          <div className="mt-10">
+            <SpringLinks
+              scale="studio"
+              items={pages
+                .filter((page) => page.href !== "/")
+                .map((page) => ({
+                  href: page.href,
+                  index: page.index,
+                  title: page.label,
+                  summary: page.summary,
+                }))}
+            />
+          </div>
         </div>
       </section>
     </div>

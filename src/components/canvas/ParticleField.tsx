@@ -94,7 +94,7 @@ function Network({ frozen }: { frozen: boolean }) {
     <group ref={group}>
       <points geometry={geometries.pointGeometry}>
         <pointsMaterial
-          color="#e7a23a"
+          color="#0c5c3a"
           size={0.035}
           transparent
           opacity={0.85}
@@ -104,7 +104,7 @@ function Network({ frozen }: { frozen: boolean }) {
       </points>
       <lineSegments geometry={geometries.lineGeometry}>
         <lineBasicMaterial
-          color="#8ee0cf"
+          color="#7dba9a"
           transparent
           opacity={0.28}
           depthWrite={false}
@@ -128,7 +128,7 @@ export function ParticleField() {
       camera={{ position: [0, 0, 6.2], fov: 48 }}
       frameloop={frozen ? "demand" : "always"}
       gl={{ alpha: true, antialias: true }}
-      onCreated={({ gl }) => gl.setClearColor("#07080d", 0)}
+      onCreated={({ gl }) => gl.setClearColor("#f6f1e6", 0)}
     >
       <Network frozen={frozen} />
     </Canvas>
