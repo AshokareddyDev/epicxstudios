@@ -7,10 +7,10 @@ export default async function HomeAdminPage() {
     <div>
       <h1 className="font-display text-4xl tracking-tight">Home</h1>
       <p className="mt-4 max-w-xl text-base leading-7 text-ink/75">
-        The glass panel, the system heading, and the closing list of pages.
+        The letterhead and the photograph table. One save publishes both.
       </p>
       <div className="mt-8">
-        <HomeEditor home={site.home} />
+        <HomeEditor home={site.home} views={site.views} practices={[...site.practices]} />
       </div>
     </div>
   );

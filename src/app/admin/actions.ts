@@ -104,7 +104,7 @@ export async function saveHome(
   await guard();
   try {
     const site = await readSiteFresh();
-    const next = parseSite({
+    const withHome = parseSite({
       ...site,
       home: {
         eyebrow: formData.get("eyebrow"),
@@ -115,7 +115,7 @@ export async function saveHome(
         linksTitle: formData.get("linksTitle"),
       },
     });
-    return commit(next);
+    return commit(replaceViews(withHome, payload(formData)));
   } catch (error) {
     return fail(error);
   }
@@ -189,19 +189,6 @@ export async function savePractice(
     const site = await readSiteFresh();
     const href = String(formData.get("href") ?? "");
     return commit(replacePractice(site, href, payload(formData)));
-  } catch (error) {
-    return fail(error);
-  }
-}
-
-export async function saveViews(
-  _previous: SaveState,
-  formData: FormData,
-): Promise<SaveState> {
-  await guard();
-  try {
-    const site = await readSiteFresh();
-    return commit(replaceViews(site, payload(formData)));
   } catch (error) {
     return fail(error);
   }

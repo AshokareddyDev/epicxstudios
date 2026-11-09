@@ -18,13 +18,13 @@ export default async function ServicesPage() {
   const site = await getSite();
 
   return (
-    <article className="mx-auto w-full max-w-6xl overflow-x-clip px-5 pt-28 pb-24 md:px-8 md:pt-36">
+    <article className="page-column overflow-x-clip px-5 pt-28 pb-24 md:px-8 md:pt-36">
       <TiltPanel>
         <Reveal>
           <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
             {site.servicesPage.eyebrow}
           </p>
-          <h1 className="mt-4 max-w-xl font-display text-4xl tracking-tight md:text-6xl">
+          <h1 className="display-title mt-4 font-display">
             {site.servicesPage.headline}
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/70">

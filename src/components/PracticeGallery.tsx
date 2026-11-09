@@ -116,7 +116,7 @@ export function PracticeGallery({ practices }: { practices: readonly Practice[] 
           </p>
           <h2
             id="studio-gallery"
-            className="mt-4 max-w-xl font-display text-3xl tracking-tight md:text-5xl"
+            className="section-title mt-4 font-display"
           >
             Four products, from the classroom out.
           </h2>

@@ -107,14 +107,14 @@ export function Navbar({
   }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+    <header className="fixed inset-x-0 top-0 z-50 overflow-x-clip pt-3 sm:pt-4">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[calc(0.75rem+2px)] bg-paper sm:h-[calc(1rem+2px)]"
       />
       <motion.nav
         aria-label="Primary"
-        className="mx-auto max-w-6xl"
+        className="page-column px-3 sm:px-5"
         initial={{ y: -12 }}
         animate={{ y: 0 }}
         transition={uiSpring}

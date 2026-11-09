@@ -15,9 +15,9 @@ const titleClass = {
   compact:
     "block font-display text-xl tracking-tight text-ink transition-colors duration-300 group-hover:text-amber motion-reduce:transition-none md:text-2xl",
   studio:
-    "block font-display text-2xl tracking-tight text-ink transition-colors duration-300 group-hover:text-amber motion-reduce:transition-none md:text-3xl",
+    "row-title block font-display text-ink transition-colors duration-300 group-hover:text-amber motion-reduce:transition-none",
   display:
-    "block font-display text-[1.7rem] leading-none tracking-tight text-ink transition-colors duration-300 group-hover:text-amber motion-reduce:transition-none md:text-4xl",
+    "row-title block font-display text-ink transition-colors duration-300 group-hover:text-amber motion-reduce:transition-none",
 } as const;
 
 const rowClass = {

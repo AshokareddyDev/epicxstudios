@@ -336,12 +336,12 @@ export function LearnStudio() {
   }
 
   return (
-    <article className="mx-auto w-full max-w-6xl px-5 pt-28 pb-24 md:px-8 md:pt-36">
+    <article className="page-column overflow-x-clip px-5 pt-28 pb-24 md:px-8 md:pt-36">
       <header className="max-w-2xl">
         <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
           K12 · State and CBSE
         </p>
-        <h1 className="mt-4 font-display text-4xl tracking-tight md:text-6xl">
+        <h1 className="display-title mt-4 font-display">
           The chapter, one moving step at a time.
         </h1>
         <p className="mt-5 max-w-xl text-lg leading-8 text-ink/75">
@@ -367,7 +367,7 @@ export function LearnStudio() {
       </header>
 
       <section id="lesson" aria-labelledby="lesson-path" className="mt-16 scroll-mt-28 md:mt-24">
-        <h2 id="lesson-path" className="font-display text-3xl tracking-tight md:text-5xl">
+        <h2 id="lesson-path" className="section-title font-display">
           Walk the example.
         </h2>
         <p className="mt-4 max-w-xl text-base leading-7 text-ink/75">
@@ -375,7 +375,7 @@ export function LearnStudio() {
           bounces along to say what the class should notice.
         </p>
 
-        <div className="mt-8 -mx-5 overflow-x-auto px-5 md:mx-0 md:overflow-visible md:px-0">
+        <div className="mt-8 max-w-full overflow-x-auto">
           <div role="group" aria-label="Example chapters" className="flex w-max gap-3 md:w-auto">
             {chapters.map((item) => {
               const selected = item.id === chapter.id;
@@ -661,7 +661,7 @@ export function LearnStudio() {
       </section>
 
       <section className="mt-20 max-w-2xl md:mt-28">
-        <h2 className="font-display text-3xl tracking-tight md:text-5xl">
+        <h2 className="section-title font-display">
           Start from the syllabus the class already has.
         </h2>
         <p className="mt-5 text-lg leading-8 text-ink/75">

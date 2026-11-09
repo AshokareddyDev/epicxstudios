@@ -7,9 +7,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { View } from "@/lib/site";
 import { uiSpring } from "@/lib/motion";
 
-const inset =
-  "scroll-pl-[max(1.25rem,calc((100%-72rem)/2+1.25rem))] pl-[max(1.25rem,calc((100%-72rem)/2+1.25rem))] pr-[max(1.25rem,calc((100%-72rem)/2+1.25rem))] md:scroll-pl-[max(2rem,calc((100%-72rem)/2+2rem))] md:pl-[max(2rem,calc((100%-72rem)/2+2rem))] md:pr-[max(2rem,calc((100%-72rem)/2+2rem))]";
-
 function StepButton({
   label,
   disabled,
@@ -74,14 +71,14 @@ export function ViewingRow({ views }: { views: readonly View[] }) {
 
   return (
     <div>
-      <div className="mx-auto flex w-full max-w-6xl items-end justify-between gap-6 px-5 md:px-8">
+      <div className="page-column flex items-end justify-between gap-6 px-5 md:px-8">
         <div className="min-w-0">
           <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
             Gallery
           </p>
           <h2
             id="studio-gallery"
-            className="mt-4 max-w-xl font-display text-3xl tracking-tight md:text-5xl"
+            className="section-title mt-4 font-display"
           >
             How a lesson is viewed.
           </h2>
@@ -111,9 +108,9 @@ export function ViewingRow({ views }: { views: readonly View[] }) {
             step(-1);
           }
         }}
-        className={`mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] motion-reduce:scroll-auto md:gap-5 [&::-webkit-scrollbar]:hidden ${
+        className={`view-rail mt-8 flex max-w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] motion-reduce:scroll-auto md:gap-5 [&::-webkit-scrollbar]:hidden ${
           reduce ? "" : "scroll-smooth"
-        } ${inset}`}
+        }`}
       >
         {views.map((view, index) => (
           <motion.div
@@ -122,7 +119,7 @@ export function ViewingRow({ views }: { views: readonly View[] }) {
             whileHover={{ y: -4 }}
             whileTap={{ scale: 0.99 }}
             transition={uiSpring}
-            className="w-[min(78vw,57.5rem)] shrink-0 snap-start"
+            className="w-[min(78vw,calc(var(--page-max)-4rem))] shrink-0 snap-start"
           >
             <Link href={view.href} className="block">
               <div className="relative aspect-video overflow-hidden rounded-[28px] bg-ink/[0.04]">

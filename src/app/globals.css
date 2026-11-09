@@ -16,9 +16,29 @@
   --font-display: var(--font-syne), ui-sans-serif, sans-serif;
 }
 
+:root {
+  --page-pad: 1.25rem;
+  --page-max: 100%;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-pad: 2rem;
+    --page-max: 72rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --page-max: min(92vw, 96rem);
+  }
+}
+
 html {
   color-scheme: dark;
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   background-color: #030a16;
   background-image: linear-gradient(180deg, #0a192f 0%, #030a16 72%);
   background-attachment: fixed;
@@ -26,9 +46,49 @@ html {
 }
 
 body {
+  max-width: 100%;
+  overflow-x: clip;
   background-color: transparent;
   color: #f8f9fa;
   font-family: var(--font-sans);
+}
+
+.page-column {
+  width: min(100%, var(--page-max));
+  max-width: 100%;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.display-title {
+  max-width: 16em;
+  font-size: clamp(2.15rem, 1.05rem + 3.4vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.section-title {
+  max-width: 18em;
+  font-size: clamp(1.875rem, 0.85rem + 2.15vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.row-title {
+  font-size: clamp(1.5rem, 0.85rem + 1.5vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.view-rail {
+  padding-inline: max(
+    var(--page-pad),
+    calc((100% - min(100%, var(--page-max))) / 2 + var(--page-pad))
+  );
+  scroll-padding-inline: max(
+    var(--page-pad),
+    calc((100% - min(100%, var(--page-max))) / 2 + var(--page-pad))
+  );
 }
 
 .glass {

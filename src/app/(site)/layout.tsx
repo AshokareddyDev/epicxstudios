@@ -24,9 +24,10 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
       <main id="content" className="flex-1">
         {children}
       </main>
-      <footer className="relative z-10 px-5 py-10 md:px-8">
-        <div aria-hidden className="quantum-rule mx-auto mb-10 max-w-6xl" />
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <footer className="relative z-10 py-10">
+        <div className="page-column px-5 md:px-8">
+        <div aria-hidden className="quantum-rule mb-10" />
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="font-display text-lg tracking-tight">{site.studio.name}</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-ink/65">{site.studio.footer}</p>
@@ -57,6 +58,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
               ))}
             </ol>
           </div>
+        </div>
         </div>
       </footer>
     </div>

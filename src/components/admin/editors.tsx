@@ -11,7 +11,6 @@ import {
   savePractice,
   saveServicesCopy,
   saveStudio,
-  saveViews,
   type SaveState,
 } from "@/app/admin/actions";
 import { uiSpring } from "@/lib/motion";
@@ -176,33 +175,142 @@ export function StudioEditor({ studio }: { studio: StudioCopy }) {
   );
 }
 
-export function HomeEditor({ home }: { home: HomeCopy }) {
+export function HomeEditor({
+  home,
+  views,
+  practices,
+}: {
+  home: HomeCopy;
+  views: View[];
+  practices: Practice[];
+}) {
+  const [frames, setFrames] = useState(views);
   const [state, action, pending] = useActionState(saveHome, idleSave);
+
   return (
-    <form action={action} className="grid max-w-2xl gap-5">
-      <TextField id="eyebrow" name="eyebrow" label="Eyebrow" defaultValue={home.eyebrow} />
-      <TextField id="title" name="title" label="Title" defaultValue={home.title} rows={2} />
-      <TextField id="lede" name="lede" label="Introduction" defaultValue={home.lede} rows={4} />
-      <TextField
-        id="systemEyebrow"
-        name="systemEyebrow"
-        label="System eyebrow"
-        defaultValue={home.systemEyebrow}
-      />
-      <TextField
-        id="systemTitle"
-        name="systemTitle"
-        label="System title"
-        defaultValue={home.systemTitle}
-        rows={2}
-      />
-      <TextField
-        id="linksTitle"
-        name="linksTitle"
-        label="Links title"
-        defaultValue={home.linksTitle}
-        rows={2}
-      />
+    <form action={action} className="grid gap-12">
+      <input type="hidden" name="payload" value={JSON.stringify(frames)} />
+      <section className="grid max-w-2xl gap-5">
+        <h2 className="font-display text-2xl tracking-tight">Letterhead</h2>
+        <TextField id="eyebrow" name="eyebrow" label="Eyebrow" defaultValue={home.eyebrow} />
+        <TextField id="title" name="title" label="Title" defaultValue={home.title} rows={2} />
+        <TextField id="lede" name="lede" label="Introduction" defaultValue={home.lede} rows={4} />
+        <TextField
+          id="systemEyebrow"
+          name="systemEyebrow"
+          label="System eyebrow"
+          defaultValue={home.systemEyebrow}
+        />
+        <TextField
+          id="systemTitle"
+          name="systemTitle"
+          label="System title"
+          defaultValue={home.systemTitle}
+          rows={2}
+        />
+        <TextField
+          id="linksTitle"
+          name="linksTitle"
+          label="Links title"
+          defaultValue={home.linksTitle}
+          rows={2}
+        />
+      </section>
+      <section id="photographs" className="grid scroll-mt-8 gap-8">
+        <div className="max-w-2xl">
+          <h2 className="font-display text-2xl tracking-tight">Photograph table</h2>
+          <p className="mt-2 text-base leading-7 text-ink/75">
+            The frames under the letterhead. One save publishes both.
+          </p>
+        </div>
+        {frames.map((view, index) => (
+          <fieldset key={`${view.src}-${index}`} className="grid gap-4 border-t border-ink/10 pt-6">
+            <legend className="font-mono text-[0.68rem] tracking-[0.18em] text-muted uppercase">
+              Frame {pad(index + 1)}
+            </legend>
+            <div>
+              <Label htmlFor={`src-${index}`}>File</Label>
+              <input
+                id={`src-${index}`}
+                value={view.src}
+                onChange={(event) =>
+                  setFrames((current) =>
+                    current.map((item, itemIndex) =>
+                      itemIndex === index ? { ...item, src: event.target.value } : item,
+                    ),
+                  )
+                }
+                className={fieldClass}
+              />
+            </div>
+            <div>
+              <Label htmlFor={`href-${index}`}>Product</Label>
+              <select
+                id={`href-${index}`}
+                value={view.href}
+                onChange={(event) =>
+                  setFrames((current) =>
+                    current.map((item, itemIndex) =>
+                      itemIndex === index ? { ...item, href: event.target.value } : item,
+                    ),
+                  )
+                }
+                className={fieldClass}
+              >
+                {practices.map((practice) => (
+                  <option key={practice.href} value={practice.href}>
+                    {practice.index} {practice.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {(
+              [
+                ["kicker", "Kicker"],
+                ["title", "Title"],
+                ["caption", "Caption"],
+                ["alt", "Description"],
+              ] as const
+            ).map(([key, label]) => (
+              <div key={key}>
+                <Label htmlFor={`${key}-${index}`}>{label}</Label>
+                <input
+                  id={`${key}-${index}`}
+                  value={view[key]}
+                  onChange={(event) =>
+                    setFrames((current) =>
+                      current.map((item, itemIndex) =>
+                        itemIndex === index ? { ...item, [key]: event.target.value } : item,
+                      ),
+                    )
+                  }
+                  className={fieldClass}
+                />
+              </div>
+            ))}
+            <RowButton
+              label={`Remove frame ${index + 1}`}
+              onClick={() => setFrames((current) => current.filter((_, itemIndex) => itemIndex !== index))}
+            />
+          </fieldset>
+        ))}
+        <RowButton
+          label="Add a frame"
+          onClick={() =>
+            setFrames((current) => [
+              ...current,
+              {
+                src: "/gallery/",
+                href: practices[0]?.href ?? "/services/k12-education",
+                kicker: "Education",
+                title: "New frame",
+                caption: "What the picture shows.",
+                alt: "Describe the picture for someone who cannot see it.",
+              },
+            ])
+          }
+        />
+      </section>
       <SaveBar pending={pending} state={state} />
     </form>
   );
@@ -483,111 +591,6 @@ export function ProductEditor({ practice }: { practice: Practice }) {
           }
         />
       </div>
-      <SaveBar pending={pending} state={state} />
-    </form>
-  );
-}
-
-export function GalleryEditor({
-  views,
-  practices,
-}: {
-  views: View[];
-  practices: Practice[];
-}) {
-  const [draft, setDraft] = useState(views);
-  const [state, action, pending] = useActionState(saveViews, idleSave);
-
-  return (
-    <form action={action} className="grid gap-8">
-      <input type="hidden" name="payload" value={JSON.stringify(draft)} />
-      {draft.map((view, index) => (
-        <fieldset key={`${view.src}-${index}`} className="grid gap-4 border-t border-ink/10 pt-6">
-          <legend className="font-mono text-[0.68rem] tracking-[0.18em] text-muted uppercase">
-            Frame {pad(index + 1)}
-          </legend>
-          <div>
-            <Label htmlFor={`src-${index}`}>File</Label>
-            <input
-              id={`src-${index}`}
-              value={view.src}
-              onChange={(event) =>
-                setDraft((current) =>
-                  current.map((item, itemIndex) =>
-                    itemIndex === index ? { ...item, src: event.target.value } : item,
-                  ),
-                )
-              }
-              className={fieldClass}
-            />
-          </div>
-          <div>
-            <Label htmlFor={`href-${index}`}>Product</Label>
-            <select
-              id={`href-${index}`}
-              value={view.href}
-              onChange={(event) =>
-                setDraft((current) =>
-                  current.map((item, itemIndex) =>
-                    itemIndex === index ? { ...item, href: event.target.value } : item,
-                  ),
-                )
-              }
-              className={fieldClass}
-            >
-              {practices.map((practice) => (
-                <option key={practice.href} value={practice.href}>
-                  {practice.index} {practice.title}
-                </option>
-              ))}
-            </select>
-          </div>
-          {(
-            [
-              ["kicker", "Kicker"],
-              ["title", "Title"],
-              ["caption", "Caption"],
-              ["alt", "Description"],
-            ] as const
-          ).map(([key, label]) => (
-            <div key={key}>
-              <Label htmlFor={`${key}-${index}`}>{label}</Label>
-              <input
-                id={`${key}-${index}`}
-                value={view[key]}
-                onChange={(event) =>
-                  setDraft((current) =>
-                    current.map((item, itemIndex) =>
-                      itemIndex === index ? { ...item, [key]: event.target.value } : item,
-                    ),
-                  )
-                }
-                className={fieldClass}
-              />
-            </div>
-          ))}
-          <RowButton
-            label={`Remove frame ${index + 1}`}
-            onClick={() => setDraft((current) => current.filter((_, itemIndex) => itemIndex !== index))}
-          />
-        </fieldset>
-      ))}
-      <RowButton
-        label="Add a frame"
-        onClick={() =>
-          setDraft((current) => [
-            ...current,
-            {
-              src: "/gallery/",
-              href: practices[0]?.href ?? "/services/k12-education",
-              kicker: "Education",
-              title: "New frame",
-              caption: "What the picture shows.",
-              alt: "Describe the picture for someone who cannot see it.",
-            },
-          ])
-        }
-      />
       <SaveBar pending={pending} state={state} />
     </form>
   );

@@ -16,7 +16,7 @@ export default async function ContactPage() {
   const site = await getSite();
 
   return (
-    <article className="mx-auto w-full max-w-6xl px-5 pt-28 pb-24 md:px-8 md:pt-36">
+    <article className="page-column overflow-x-clip px-5 pt-28 pb-24 md:px-8 md:pt-36">
       <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
         <header className="lg:sticky lg:top-32">
           <TiltPanel>
@@ -24,7 +24,7 @@ export default async function ContactPage() {
               <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
                 {site.contactPage.eyebrow}
               </p>
-              <h1 className="mt-4 max-w-xl font-display text-4xl tracking-tight md:text-6xl">
+              <h1 className="display-title mt-4 font-display">
                 {site.contactPage.headline}
               </h1>
               <p className="mt-5 max-w-md text-lg leading-8 text-ink/70">

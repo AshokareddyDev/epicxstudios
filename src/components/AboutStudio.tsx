@@ -17,13 +17,13 @@ export function AboutStudio({
   practices: readonly Practice[];
 }) {
   return (
-    <article className="mx-auto w-full max-w-6xl overflow-x-clip px-5 pt-28 pb-24 md:px-8 md:pt-36">
+    <article className="page-column overflow-x-clip px-5 pt-28 pb-24 md:px-8 md:pt-36">
       <TiltPanel>
         <Reveal>
           <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
             {about.eyebrow}
           </p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl tracking-tight md:text-6xl">
+          <h1 className="display-title mt-4 font-display">
             {about.headline}
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/70">{about.lede}</p>
@@ -42,7 +42,7 @@ export function AboutStudio({
           <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
             {about.teamEyebrow}
           </p>
-          <h2 id="studio-team" className="mt-4 max-w-xl font-display text-3xl tracking-tight md:text-5xl">
+          <h2 id="studio-team" className="section-title mt-4 font-display">
             {about.teamTitle}
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-7 text-ink/75 md:text-lg md:leading-8">
@@ -90,7 +90,7 @@ export function AboutStudio({
             <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
               {about.productsEyebrow}
             </p>
-            <h2 className="mt-4 max-w-md font-display text-3xl tracking-tight">
+            <h2 className="section-title mt-4 font-display">
               {about.productsTitle}
             </h2>
           </div>

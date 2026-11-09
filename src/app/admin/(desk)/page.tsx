@@ -4,11 +4,10 @@ import { listInquiries } from "@/lib/inquiries";
 
 const sections = [
   { href: "/admin/studio", label: "Studio", body: "The name, the description, and the footer line." },
-  { href: "/admin/home", label: "Home", body: "The opening line and the titles under it." },
+  { href: "/admin/home", label: "Home", body: "The letterhead and the photograph table. One save publishes both." },
   { href: "/admin/services", label: "Services", body: "The services page introduction." },
   { href: "/admin/pages", label: "Pages", body: "Navigation labels and the summaries beside them." },
   { href: "/admin/products", label: "Products", body: "Each product page: the headline, the points, and the details." },
-  { href: "/admin/gallery", label: "Gallery", body: "The pictures on the home page, and the words on them." },
   { href: "/admin/about", label: "About", body: "The studio text, the principles, and the team profiles." },
   { href: "/admin/contact", label: "Contact", body: "The words beside the brief form." },
   { href: "/admin/briefs", label: "Briefs", body: "What visitors sent from the contact form." },

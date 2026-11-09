@@ -68,10 +68,10 @@ export function HomeStage({
       <section
         id="studio"
         aria-labelledby="studio-title"
-        className="relative z-10 overflow-x-clip px-5 pt-28 pb-16 md:px-8 md:pt-32"
+        className="relative z-10 overflow-x-clip pt-28 pb-16 md:pt-32"
       >
         <div
-          className="mx-auto w-full max-w-6xl"
+          className="page-column px-5 md:px-8"
           style={{ perspective: 1600 }}
         >
           <motion.div
@@ -102,7 +102,7 @@ export function HomeStage({
                 <motion.h1
                   id="studio-title"
                   variants={reveal}
-                  className="mt-4 max-w-xl font-display text-[clamp(2.15rem,4.4vw,3.35rem)] leading-[1.02] tracking-[-0.045em] text-ivory"
+                  className="display-title mt-4 font-display text-ivory"
                 >
                   {home.title}
                 </motion.h1>
@@ -123,16 +123,16 @@ export function HomeStage({
 
       <section
         aria-labelledby="studio-flow"
-        className="relative z-10 px-5 pt-16 md:px-8 md:pt-20"
+        className="relative z-10 pt-16 md:pt-20"
       >
-        <div className="mx-auto w-full max-w-6xl">
+        <div className="page-column px-5 md:px-8">
           <div aria-hidden className="quantum-rule mb-16 md:mb-20" />
           <p className="font-mono text-[0.72rem] tracking-[0.32em] text-muted uppercase">
             {home.systemEyebrow}
           </p>
           <h2
             id="studio-flow"
-            className="mt-4 max-w-xl font-display text-3xl tracking-tight md:text-5xl"
+            className="section-title mt-4 font-display"
           >
             {home.systemTitle}
           </h2>
@@ -149,12 +149,12 @@ export function HomeStage({
 
       <section
         aria-labelledby="studio-sections"
-        className="relative z-10 px-5 pb-24 md:px-8 md:pb-28"
+        className="relative z-10 pb-24 md:pb-28"
       >
-        <div className="mx-auto w-full max-w-6xl">
+        <div className="page-column px-5 md:px-8">
           <h2
             id="studio-sections"
-            className="max-w-xl font-display text-3xl tracking-tight md:text-5xl"
+            className="section-title font-display"
           >
             {home.linksTitle}
           </h2>

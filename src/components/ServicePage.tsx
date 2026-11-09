@@ -14,7 +14,7 @@ export function ServicePage({
   practices: readonly Practice[];
 }) {
   return (
-    <article className="relative mx-auto w-full max-w-6xl px-5 pt-28 pb-16 md:px-8 md:pt-32">
+    <article className="page-column relative overflow-x-clip px-5 pt-28 pb-16 md:px-8 md:pt-32">
       <div className="sticky top-24 z-20 -mx-5 mb-8 bg-paper/90 px-5 py-3 backdrop-blur-xl md:-mx-8 md:px-8 lg:static lg:mx-0 lg:mb-10 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
         <ChapterRail practices={practices} currentHref={practice.href} />
       </div>
@@ -27,7 +27,7 @@ export function ServicePage({
               </p>
             </Reveal>
             <Reveal delay={0.06}>
-              <h1 className="mt-5 max-w-xl font-display text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.96] tracking-[-0.04em]">
+              <h1 className="display-title mt-5 font-display">
                 {practice.headline}
               </h1>
             </Reveal>
@@ -64,7 +64,7 @@ export function ServicePage({
 
       <section className="mt-20 md:mt-28">
         <Reveal>
-          <h2 className="max-w-xl font-display text-3xl tracking-tight md:text-5xl">
+          <h2 className="section-title font-display">
             {practice.detailTitle}
           </h2>
         </Reveal>
