@@ -31,14 +31,58 @@ function isCurrent(pathname: string, href: string) {
 
 function Mark() {
   return (
-    <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
-      <path
-        d="M12 2.75 21.25 12 12 21.25 2.75 12 12 2.75Z"
+    <svg viewBox="-28 -30 56 62" className="size-7" aria-hidden="true">
+      <defs>
+        <linearGradient id="mark-teal" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#14b8a6" />
+          <stop offset="100%" stopColor="#00ffd5" />
+        </linearGradient>
+      </defs>
+      <polygon
+        points="0,-22.5 20,-10 20,12.5 0,25 -20,12.5 -20,-10"
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
+        stroke="url(#mark-teal)"
+        strokeWidth="1.6"
+        opacity="0.7"
       />
-      <path d="M12 7.25v9.5" stroke="#00ffd5" strokeWidth="1.4" />
+      <polygon
+        points="0,-22.5 20,-10 0,2.5 -20,-10"
+        fill="url(#mark-teal)"
+        fillOpacity="0.2"
+        stroke="url(#mark-teal)"
+        strokeWidth="1.15"
+      />
+      <polygon
+        points="-20,-10 0,2.5 0,25 -20,12.5"
+        fill="url(#mark-teal)"
+        fillOpacity="0.1"
+        stroke="url(#mark-teal)"
+        strokeWidth="1.15"
+      />
+      <polygon
+        points="20,-10 0,2.5 0,25 20,12.5"
+        fill="url(#mark-teal)"
+        fillOpacity="0.28"
+        stroke="url(#mark-teal)"
+        strokeWidth="1.15"
+      />
+      <path
+        d="M-12.5,-6.25 L12.5,6.25 M12.5,-6.25 L-12.5,6.25"
+        stroke="url(#mark-teal)"
+        strokeWidth="3.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M-12.5,-6.25 L12.5,6.25 M12.5,-6.25 L-12.5,6.25"
+        stroke="#f8f9fa"
+        strokeWidth="1.35"
+        strokeLinecap="round"
+      />
+      <circle cx="0" cy="2.5" r="2.15" fill="#f8f9fa" />
+      <circle cx="-12.5" cy="-6.25" r="1.7" fill="#00ffd5" />
+      <circle cx="12.5" cy="-6.25" r="1.7" fill="#14b8a6" />
+      <circle cx="-12.5" cy="6.25" r="1.7" fill="#14b8a6" />
+      <circle cx="12.5" cy="6.25" r="1.7" fill="#00ffd5" />
     </svg>
   );
 }
