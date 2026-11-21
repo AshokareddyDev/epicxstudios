@@ -22,7 +22,7 @@ import type { Practice } from "@/lib/site";
 const initialState: BookingState = { status: "idle" };
 
 const fieldClass =
-  "mt-2 w-full rounded-2xl border border-ivory/40 bg-ivory px-4 py-3 text-base text-paper";
+  "mt-1.5 w-full rounded-2xl border border-ivory/40 bg-ivory px-3.5 py-2 text-base text-paper";
 
 function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
@@ -69,18 +69,17 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
 
   if (state.status === "success") {
     return (
-      <Panel>
+      <Panel className="px-6 py-5 md:px-7 md:py-6">
         <p className="font-mono text-[0.68rem] tracking-[0.28em] text-muted uppercase">
           Appointment
         </p>
-        <h2 className="mt-3 font-display text-3xl tracking-tight">
+        <h2 className="mt-2 font-display text-2xl tracking-tight">
           Held{state.name ? ` for ${state.name}` : ""}.
         </h2>
-        <p className="mt-4 max-w-md text-base leading-7 text-ink/75">
+        <p className="mt-2 max-w-md text-base leading-6 text-ink/75">
           {state.when
             ? `${longDate(state.when.slice(0, 10))} at ${state.when.slice(11)}, Bengaluru time.`
-            : "The time is on the studio desk."}{" "}
-          A mailbox is not connected, so it was not sent on.
+            : "The time is on the studio desk."}
         </p>
       </Panel>
     );
@@ -92,12 +91,13 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
   );
 
   return (
-    <form action={formAction} className="grid gap-6" noValidate>
+    <form action={formAction} className="grid gap-3 lg:grid-cols-2 lg:items-start" noValidate>
+      <div className="grid content-start gap-3">
       <div>
         <p className="font-mono text-[0.68rem] tracking-[0.18em] text-ink/55 uppercase">
           Day
         </p>
-        <div className="glass mt-2 rounded-[1.5rem] p-3 sm:p-4">
+        <div className="glass mt-1.5 rounded-[1.25rem] p-2.5 sm:p-3">
           <div className="flex items-center justify-between gap-3">
             <motion.button
               type="button"
@@ -114,11 +114,11 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
                     : { year: current.year, month };
                 })
               }
-              className="grid size-11 place-items-center rounded-full border border-ivory/20 text-ink"
+              className="grid size-9 place-items-center rounded-full border border-ivory/20 text-ink"
             >
               ←
             </motion.button>
-            <p className="font-display text-xl tracking-tight">
+            <p className="font-display text-lg tracking-tight">
               {cursor ? monthLabel(cursor.year, cursor.month) : "Calendar"}
             </p>
             <motion.button
@@ -136,12 +136,12 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
                     : { year: current.year, month };
                 })
               }
-              className="grid size-11 place-items-center rounded-full border border-ivory/20 text-ink"
+              className="grid size-9 place-items-center rounded-full border border-ivory/20 text-ink"
             >
               →
             </motion.button>
           </div>
-          <div className="mt-4 grid grid-cols-7 gap-1 text-center">
+          <div className="mt-2 grid grid-cols-7 gap-0.5 text-center">
             {WEEK_LABELS.map((label) => (
               <p key={label} className="font-mono text-[0.58rem] tracking-[0.12em] text-muted uppercase">
                 {label}
@@ -149,7 +149,7 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
             ))}
             {cells.map((cell, index) => {
               if (!cell || !today) {
-                return <span key={`empty-${index}`} className="h-11" />;
+                return <span key={`empty-${index}`} className="h-8" />;
               }
               const open = isOpenDay(cell.iso, today);
               const active = selected === cell.iso;
@@ -167,7 +167,7 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
                     setSelected(cell.iso);
                     setTime(null);
                   }}
-                  className={`h-11 rounded-xl font-display text-base ${
+                  className={`h-8 rounded-lg font-display text-sm ${
                     active
                       ? "bg-amber text-paper"
                       : open
@@ -187,7 +187,7 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
         <p className="font-mono text-[0.68rem] tracking-[0.18em] text-ink/55 uppercase">
           Time · Bengaluru
         </p>
-        <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3" role="group" aria-label="Available times">
+        <div className="mt-1.5 grid grid-cols-3 gap-1.5 sm:grid-cols-5" role="group" aria-label="Available times">
           {SLOT_TIMES.map((slot) => {
             const closed = !selected || takenOnDay.has(slot);
             const active = time === slot;
@@ -201,7 +201,7 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
                 whileTap={closed ? undefined : { scale: 0.98 }}
                 transition={uiSpring}
                 onClick={() => setTime(slot)}
-                className={`h-11 rounded-full font-mono text-[0.72rem] tracking-[0.14em] ${
+                className={`h-9 rounded-full font-mono text-[0.68rem] tracking-[0.12em] ${
                   active
                     ? "bg-amber text-paper"
                     : closed
@@ -214,17 +214,20 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
             );
           })}
         </div>
-        <p className="mt-3 text-sm leading-6 text-ink/70">
+        <p className="mt-1.5 text-sm leading-5 text-ink/70">
           {selected
             ? `${longDate(selected)}. Weekdays only, for the next four weeks.`
             : "Pick a weekday. Weekends stay closed."}
         </p>
         <FieldError id="slot-error" message={errors?.slot} />
       </div>
+      </div>
 
+      <div className="grid content-start gap-3">
       <input type="hidden" name="date" value={selected ?? ""} />
       <input type="hidden" name="time" value={time ?? ""} />
 
+      <div className="grid gap-3">
       <div>
         <label htmlFor="visit-name" className="font-mono text-[0.68rem] tracking-[0.18em] text-ink/55 uppercase">
           Name
@@ -262,6 +265,7 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
         </select>
         <FieldError id="visit-practice-error" message={errors?.practice} />
       </div>
+      </div>
       {state.message ? (
         <p className="font-mono text-[0.68rem] tracking-[0.14em] text-amber uppercase">{state.message}</p>
       ) : null}
@@ -275,6 +279,7 @@ export function AppointmentBook({ practices }: { practices: readonly Practice[] 
       >
         {pending ? "Holding" : "Book this time"}
       </motion.button>
+      </div>
     </form>
   );
 }

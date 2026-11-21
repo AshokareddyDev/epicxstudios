@@ -10,7 +10,7 @@ import type { Practice } from "@/lib/site";
 const initialState: ContactState = { status: "idle" };
 
 const fieldClass =
-  "mt-2 w-full rounded-2xl border border-ivory/40 bg-ivory px-4 py-3 text-base text-paper";
+  "mt-1.5 w-full rounded-2xl border border-ivory/40 bg-ivory px-3.5 py-2 text-base text-paper";
 
 function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
@@ -26,16 +26,15 @@ export function ContactForm({ practices }: { practices: readonly Practice[] }) {
 
   if (state.status === "success") {
     return (
-      <Panel>
+      <Panel className="px-6 py-5 md:px-7 md:py-6">
         <p className="font-mono text-[0.68rem] tracking-[0.28em] text-muted uppercase">
           Brief
         </p>
-        <h2 className="mt-3 font-display text-3xl tracking-tight">
+        <h2 className="mt-2 font-display text-2xl tracking-tight">
           Held with the studio{state.name ? `, ${state.name}` : ""}.
         </h2>
-        <p className="mt-4 max-w-md text-base leading-7 text-ink/75">
-          The brief is on the studio desk. A mailbox is not connected, so it
-          was not sent on.
+        <p className="mt-2 max-w-md text-base leading-6 text-ink/75">
+          The brief is on the studio desk.
         </p>
       </Panel>
     );
@@ -44,7 +43,8 @@ export function ContactForm({ practices }: { practices: readonly Practice[] }) {
   const errors = state.fieldErrors;
 
   return (
-    <form action={formAction} className="grid gap-5" noValidate>
+    <form action={formAction} className="grid gap-3" noValidate>
+      <div className="grid gap-3 sm:grid-cols-2">
       <div>
         <label htmlFor="name" className="font-mono text-[0.68rem] tracking-[0.18em] text-ink/55 uppercase">
           Name
@@ -114,6 +114,7 @@ export function ContactForm({ practices }: { practices: readonly Practice[] }) {
         </select>
         <FieldError id="practice-error" message={errors?.practice} />
       </div>
+      </div>
       <div>
         <label htmlFor="message" className="font-mono text-[0.68rem] tracking-[0.18em] text-ink/55 uppercase">
           Brief
@@ -122,7 +123,7 @@ export function ContactForm({ practices }: { practices: readonly Practice[] }) {
           id="message"
           name="message"
           required
-          rows={6}
+          rows={7}
           aria-invalid={errors?.message ? true : undefined}
           aria-describedby={errors?.message ? "message-error" : undefined}
           className={`${fieldClass} resize-y`}

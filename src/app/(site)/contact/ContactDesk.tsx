@@ -17,7 +17,7 @@ export function ContactDesk({ practices }: { practices: readonly Practice[] }) {
 
   return (
     <div>
-      <div className="mb-6 flex flex-wrap gap-2" role="group" aria-label="How to reach the studio">
+      <div className="mb-4 flex flex-wrap gap-2" role="group" aria-label="How to reach the studio">
         {modes.map((item) => {
           const active = mode === item.id;
           return (
