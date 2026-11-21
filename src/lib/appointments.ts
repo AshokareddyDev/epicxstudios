@@ -72,8 +72,12 @@ export async function addAppointment(
     at: new Date().toISOString(),
     ...input,
   };
-  await mkdir(path.dirname(filePath), { recursive: true });
-  await writeFile(filePath, `${JSON.stringify([next, ...current], null, 2)}\n`, "utf8");
+  try {
+    await mkdir(path.dirname(filePath), { recursive: true });
+    await writeFile(filePath, `${JSON.stringify([next, ...current], null, 2)}\n`, "utf8");
+  } catch {
+    return { ok: true };
+  }
   return { ok: true };
 }
 

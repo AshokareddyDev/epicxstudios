@@ -1,9 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getSite } from "@/lib/content";
-import { isOpenDay, isSlotTime } from "@/lib/appointment-slots";
+import { longDate, isOpenDay, isSlotTime } from "@/lib/appointment-slots";
 import { addAppointment, listAppointments } from "@/lib/appointments";
+import { getSite } from "@/lib/content";
+import { notifyOwner } from "@/lib/notify-owner";
 
 export type BookingField = "name" | "email" | "practice" | "slot";
 
@@ -58,6 +59,20 @@ export async function bookAppointment(
   }
   if (!isSlotTime(time)) {
     return { status: "error", fieldErrors: { slot: "Choose an open day and a time." } };
+  }
+
+  const product =
+    site.practices.find((item) => item.href === practice)?.title ?? "Not sure yet";
+  const when = `${longDate(date)} at ${time}`;
+  const mailed = await notifyOwner({
+    name,
+    email,
+    organization,
+    product,
+    when,
+  });
+  if (!mailed.ok) {
+    return { status: "error", message: mailed.message };
   }
 
   const saved = await addAppointment({

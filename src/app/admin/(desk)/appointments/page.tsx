@@ -11,7 +11,7 @@ export default async function AppointmentsAdminPage() {
     <div>
       <h1 className="font-display text-4xl tracking-tight">Appointments</h1>
       <p className="mt-4 max-w-xl text-base leading-7 text-ink/75">
-        Weekday times held on this machine from the contact page. A mailbox is still not connected, so nothing is sent on.
+        Weekday times from the contact page. Each one is also sent to the studio inbox.
       </p>
       {appointments.length === 0 ? (
         <p className="mt-10 border-t border-ink/10 pt-6 text-base text-ink/75">
