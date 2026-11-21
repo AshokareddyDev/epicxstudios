@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
@@ -31,59 +32,14 @@ function isCurrent(pathname: string, href: string) {
 
 function Mark() {
   return (
-    <svg viewBox="-28 -30 56 62" className="size-7" aria-hidden="true">
-      <defs>
-        <linearGradient id="mark-teal" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#14b8a6" />
-          <stop offset="100%" stopColor="#00ffd5" />
-        </linearGradient>
-      </defs>
-      <polygon
-        points="0,-22.5 20,-10 20,12.5 0,25 -20,12.5 -20,-10"
-        fill="none"
-        stroke="url(#mark-teal)"
-        strokeWidth="1.6"
-        opacity="0.7"
-      />
-      <polygon
-        points="0,-22.5 20,-10 0,2.5 -20,-10"
-        fill="url(#mark-teal)"
-        fillOpacity="0.2"
-        stroke="url(#mark-teal)"
-        strokeWidth="1.15"
-      />
-      <polygon
-        points="-20,-10 0,2.5 0,25 -20,12.5"
-        fill="url(#mark-teal)"
-        fillOpacity="0.1"
-        stroke="url(#mark-teal)"
-        strokeWidth="1.15"
-      />
-      <polygon
-        points="20,-10 0,2.5 0,25 20,12.5"
-        fill="url(#mark-teal)"
-        fillOpacity="0.28"
-        stroke="url(#mark-teal)"
-        strokeWidth="1.15"
-      />
-      <path
-        d="M-12.5,-6.25 L12.5,6.25 M12.5,-6.25 L-12.5,6.25"
-        stroke="url(#mark-teal)"
-        strokeWidth="3.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M-12.5,-6.25 L12.5,6.25 M12.5,-6.25 L-12.5,6.25"
-        stroke="#f8f9fa"
-        strokeWidth="1.35"
-        strokeLinecap="round"
-      />
-      <circle cx="0" cy="2.5" r="2.15" fill="#f8f9fa" />
-      <circle cx="-12.5" cy="-6.25" r="1.7" fill="#00ffd5" />
-      <circle cx="12.5" cy="-6.25" r="1.7" fill="#14b8a6" />
-      <circle cx="-12.5" cy="6.25" r="1.7" fill="#14b8a6" />
-      <circle cx="12.5" cy="6.25" r="1.7" fill="#00ffd5" />
-    </svg>
+    <Image
+      src="/mark.png"
+      alt=""
+      width={295}
+      height={319}
+      className="h-9 w-auto"
+      priority
+    />
   );
 }
 
@@ -178,7 +134,7 @@ export function Navbar({
                 whileHover={{ rotate: 8 }}
                 whileTap={{ scale: 0.96 }}
                 transition={uiSpring}
-                className="grid size-9 place-items-center rounded-full border border-ink/15 text-ink"
+                className="grid h-9 place-items-center"
               >
                 <Mark />
               </motion.span>
