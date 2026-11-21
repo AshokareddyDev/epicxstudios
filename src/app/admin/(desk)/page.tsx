@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getSite } from "@/lib/content";
+import { listAppointments } from "@/lib/appointments";
 import { listInquiries } from "@/lib/inquiries";
 
 const sections = [
@@ -11,19 +12,21 @@ const sections = [
   { href: "/admin/about", label: "About", body: "The studio text, the principles, and the team profiles." },
   { href: "/admin/contact", label: "Contact", body: "The words beside the brief form." },
   { href: "/admin/briefs", label: "Briefs", body: "What visitors sent from the contact form." },
+  { href: "/admin/appointments", label: "Appointments", body: "Weekday times held from the contact page." },
 ] as const;
 
 export default async function AdminOverviewPage() {
   const site = await getSite();
-  const briefs = await listInquiries();
+  const [briefs, appointments] = await Promise.all([listInquiries(), listAppointments()]);
 
   return (
     <div>
       <h1 className="max-w-xl font-display text-4xl tracking-tight">The desk.</h1>
       <p className="mt-4 max-w-2xl text-base leading-7 text-ink/75">
         {site.practices.length} products, {site.views.length} gallery frames,{" "}
-        {site.about.members.length} people, and {briefs.length}{" "}
-        {briefs.length === 1 ? "brief" : "briefs"}. A save writes the site file
+        {site.about.members.length} people, {briefs.length}{" "}
+        {briefs.length === 1 ? "brief" : "briefs"}, and {appointments.length}{" "}
+        {appointments.length === 1 ? "appointment" : "appointments"}. A save writes the site file
         on this machine. Publish it when you push that file.
       </p>
       <ol className="mt-10 border-b border-ink/10">

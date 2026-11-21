@@ -18,6 +18,7 @@ import {
   replaceViews,
   writeSite,
 } from "@/lib/content";
+import { deleteAppointment } from "@/lib/appointments";
 import { deleteInquiry } from "@/lib/inquiries";
 import type { SiteContent } from "@/lib/site";
 
@@ -214,4 +215,13 @@ export async function removeInquiry(formData: FormData) {
   if (id) await deleteInquiry(id);
   revalidatePath("/admin/briefs");
   revalidatePath("/admin");
+}
+
+export async function removeAppointment(formData: FormData) {
+  await guard();
+  const id = String(formData.get("id") ?? "");
+  if (id) await deleteAppointment(id);
+  revalidatePath("/admin/appointments");
+  revalidatePath("/admin");
+  revalidatePath("/contact");
 }

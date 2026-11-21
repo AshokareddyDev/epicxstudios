@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ContactForm } from "@/app/(site)/contact/ContactForm";
+import { ContactDesk } from "@/app/(site)/contact/ContactDesk";
 import { TiltPanel } from "@/components/TiltPanel";
 import { Reveal } from "@/components/ui/Reveal";
 import { getSite } from "@/lib/content";
@@ -34,7 +34,7 @@ export default async function ContactPage() {
           </TiltPanel>
         </header>
         <Reveal delay={0.08}>
-          <ContactForm practices={site.practices} />
+          <ContactDesk practices={site.practices} />
         </Reveal>
       </div>
     </article>

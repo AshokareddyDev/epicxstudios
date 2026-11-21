@@ -17,6 +17,7 @@ const links = [
   { href: "/admin/about", label: "About" },
   { href: "/admin/contact", label: "Contact" },
   { href: "/admin/briefs", label: "Briefs" },
+  { href: "/admin/appointments", label: "Appointments" },
 ] as const;
 
 function current(pathname: string, href: string) {
