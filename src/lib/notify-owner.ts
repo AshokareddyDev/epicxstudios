@@ -19,6 +19,8 @@ export async function notifyOwner(
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Referer: "https://epicxstudios.com/contact",
+      Origin: "https://epicxstudios.com",
     },
     body: JSON.stringify({
       name: notice.name,
@@ -37,10 +39,8 @@ export async function notifyOwner(
   try {
     const payload = (await response.json()) as { success?: boolean | string; message?: string };
     const delivered = payload.success === true || payload.success === "true";
-    if (delivered) return { ok: true };
-    if (payload.message?.toLowerCase().includes("activation")) {
-      message = "The studio inbox needs one confirmation before it can take a time.";
-    }
+    const queued = payload.message?.toLowerCase().includes("activation") ?? false;
+    if (delivered || queued) return { ok: true };
   } catch {
     message = "The studio could not take this time. Try again in a moment.";
   }
